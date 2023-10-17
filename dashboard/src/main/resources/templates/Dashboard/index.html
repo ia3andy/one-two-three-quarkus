@@ -1,0 +1,18 @@
+{#include main.html}
+
+<div class="container" hx-sse="connect:{uri:Dashboard.events}" hx-ext="morph">
+  <h1>One-Two-Three Quarkus</h1>
+  <div
+    id="game-container"
+    hx-headers='{"{inject:csrf.headerName}":"{inject:csrf.token}"}'
+    hx-trigger="sse:game"
+    hx-get="{uri:Dashboard.index}"
+    hx-swap="morph:innerHTML"
+>
+    {#fragment id=game}
+      {#include Dashboard/partials/controls /}
+      {#include Dashboard/partials/watcher /}
+      {#include Dashboard/partials/board /}
+    {/fragment}
+  </div>
+</div>

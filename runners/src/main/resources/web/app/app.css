@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap");
+
+:root {
+  --code-font: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  --main-font: "Josefin Sans";
+  --main-bg: #0D1C2C;
+  --top-bar: black
+}
+
+html, body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: var(--main-font), Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg);
+  color: black;
+}
+
+code {
+  font-family: var(--code-font);
+}
+

@@ -1,0 +1,11 @@
+{#if cdi:game.isStarted}
+<div class="board">
+  {#for item in cdi:game.runners}
+      <div class="runner{#if !item.alive} dead{/if}"
+          style="left:calc({cdi:game.indexPercentage(item_index)}% - 50px); bottom: calc({item.distancePercentage(cdi:game.targetDistance)}%); ">
+        {item.runner.name}
+      </div>
+  {/for}
+
+</div>
+{/if}

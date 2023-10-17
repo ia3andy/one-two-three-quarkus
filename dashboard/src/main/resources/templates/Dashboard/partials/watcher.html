@@ -1,0 +1,9 @@
+{#if cdi:game.isStarted}
+<div class="watcher d-flex justify-content-center align-items-center">
+  {#if cdi:game.isWatching}
+    <i class="bi bi-eye-fill" _="on load audio.game.play()"></i>
+  {#else}
+    <div class="eye-closed" _="on load audio.game.pause()"></div>
+  {/if}
+</div>
+{/if}
