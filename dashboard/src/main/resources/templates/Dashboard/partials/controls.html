@@ -1,11 +1,14 @@
 {#if !cdi:game.isStarted}
-<button class="btn btn-primary" hx-post="{uri:Dashboard.startGame}" _="on load audio.game.stop()">
-  <i class="bi bi-play"></i>
-  Start
-</button>
+  <button class="btn btn-primary"
+    hx-post="{uri:Dashboard.startGame}"
+    _="on load audio.game.stop()">
+    <i class="bi bi-play"></i>
+    Start
+  </button>
 {#else}
-<button class="btn btn-primary" hx-post="{uri:Dashboard.stopGame}">
-  <i class="bi bi-stop"></i>
-  Stop Game
-</button>
+  <button class="btn btn-primary"
+    hx-post="{uri:Dashboard.stopGame}">
+    <i class="bi bi-stop"></i>
+    Stop Game
+  </button>
 {/if}
