@@ -1,6 +1,7 @@
 package service;
 
 import io.quarkus.logging.Log;
+import io.smallrye.config.WithDefault;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.MultiEmitter;
 import io.smallrye.mutiny.unchecked.Unchecked;
@@ -14,10 +15,7 @@ import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -49,6 +47,17 @@ public class GameService {
     @ConfigProperty(name = "game.target-distance")
     public int targetDistance;
 
+    @ConfigProperty(name = "game.watch-min-duration", defaultValue = "1")
+    public int watchMinDuration;
+    @ConfigProperty(name = "game.watch-max-duration", defaultValue = "6")
+    public int watchMaxDuration;
+    @ConfigProperty(name = "game.rock-min-duration", defaultValue = "3")
+    public int rockMinDuration;
+    @ConfigProperty(name = "game.rock-max-duration", defaultValue = "10")
+    public int rockMaxDuration;
+
+
+
     @ConfigProperty(name = "game.time-margin-millis")
     public int timeMarginMillis;
 
@@ -66,10 +75,10 @@ public class GameService {
                     if (t > next.get()) {
                         long c;
                         if (isWatching()) {
-                            c = r.nextLong(8) + 3;
+                            c = r.nextLong(rockMaxDuration -rockMinDuration) + rockMinDuration;
                             stopWatch();
                         } else {
-                            c = r.nextLong(6) + 1;
+                            c = r.nextLong(watchMaxDuration - watchMinDuration) + watchMinDuration;
                             startWatch();
                         }
                         next.set(c + t);

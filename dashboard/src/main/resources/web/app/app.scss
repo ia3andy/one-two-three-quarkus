@@ -6,23 +6,71 @@
 @import "bootstrap/dist/css/bootstrap.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+html, body {
+  font-family: SyneMono, monospace;
+  height: -webkit-fill-available;
+}
+
+.controls-container {
+  position: absolute;
+  opacity: 90%;
+  top: calc(50% - 200px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 400px;
+
+  .btn {
+    color: #0D1C2C;
+  }
+}
 
 .watcher {
-  height: 200px;
   i {
     font-size: 200px;
   }
 
-  .eye-closed {
-    width: 200px;
-    border-top: 10px solid black;
+  img.rocking-duke {
+    height: 250px;
+  }
+
+  button.dance {
+    animation: shake 2s infinite ease-in-out;
+  }
+
+  h2 {
+    font-size: 40px;
+    padding: 20px;
+    border: 5px solid #DA3753;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    background-color: black;
   }
 }
 
+
+@keyframes shake {
+  0%  { transform: translate(3px, 1px) rotate(0deg); }
+  10% { transform: translate(-5px, -2px) rotate(-2deg); }
+  20% { transform: translate(-3px, 0px) rotate(7deg); }
+  30% { transform: translate(0px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-4px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-5deg); }
+  80% { transform: translate(-1px, -4px) rotate(4deg); }
+  90% { transform: translate(3px, 7px) rotate(0deg); }
+  100%{ transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+
+
 .board {
-  height: 30vw;
-  border: 1px dashed black;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 
   .runner {
     position: absolute;

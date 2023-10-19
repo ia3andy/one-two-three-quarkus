@@ -1,9 +1,25 @@
-{#if cdi:game.isStarted}
-<div class="watcher d-flex justify-content-center align-items-center">
+<div class="watcher d-flex justify-content-center align-items-center flex-grow-1 flex-column">
+  {#if cdi:game.isStarted}
   {#if cdi:game.isWatching}
-    <i class="bi bi-eye-fill" _="on load audio.game.pause ()"></i>
+    <button class="btn btn-link"
+        _="on load audio.game.pause()"
+        hx-post="{uri:Dashboard.stopGame}">
+      <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
+    </button>
+    <h2>Rotterdam</h2>
   {#else}
-    <div class="eye-closed" _="on load audio.game.play()"></div>
+    <button class="btn btn-link dance"
+        _="on load audio.game.play()"
+        hx-post="{uri:Dashboard.stopGame}">
+      <img class="rocking-duke" src="{duke:random}" alt="Rocking Duke">
+    </button>
+  {/if}
+  {#else}
+  <button class="btn btn-link"
+      _="on load audio.game.stop()"
+      hx-post="{uri:Dashboard.startGame}">
+    <i class="bi bi-music-player"></i>
+  </button>
+
   {/if}
 </div>
-{/if}
