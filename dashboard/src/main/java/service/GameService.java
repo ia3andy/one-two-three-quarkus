@@ -1,7 +1,6 @@
 package service;
 
 import io.quarkus.logging.Log;
-import io.smallrye.config.WithDefault;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.MultiEmitter;
 import io.smallrye.mutiny.unchecked.Unchecked;
@@ -175,7 +174,7 @@ public class GameService {
         this.runners.compute(runnerId, (i, state) -> {
             final long duration = time - started.get().toEpochMilli();
             if (state == null) {
-                return new RunnerState(new Runner(runnerId, runners.size() + 1), distance, time, RunnerState.Status.ALIVE);
+                return new RunnerState(new Runner(runnerId, runners.size() + 1), distance, time, RunnerState.Status.alive);
             }
             if (distance == 0) {
                 return state;
@@ -189,16 +188,16 @@ public class GameService {
             if (isDetected) {
                 emitEvent(DEAD, runnerId);
                 Log.infof("Runner %s is dead at %s", state.runner().name(), newDist);
-                return state.runner().newState(newDist, duration, RunnerState.Status.DEAD);
+                return state.runner().newState(newDist, duration, RunnerState.Status.dead);
             }
             if (newDist >= targetDistance) {
                 emitEvent(SAVED, runnerId);
                 Log.infof("Runner %s is saved in %sms", state.runner().name(), time);
-                return state.runner().newState(newDist, duration, RunnerState.Status.SAVED);
+                return state.runner().newState(newDist, duration, RunnerState.Status.saved);
             }
             emitEvent(RUN, runnerId);
             Log.infof("Runner %s moved to %s", state.runner().name(), newDist);
-            return state.runner().newState(newDist, duration, RunnerState.Status.ALIVE);
+            return state.runner().newState(newDist, duration, RunnerState.Status.alive);
         });
     }
 
@@ -228,7 +227,7 @@ public class GameService {
         }
 
         public RunnerState initialState(){
-            return new RunnerState(this, 0, 0, RunnerState.Status.ALIVE);
+            return new RunnerState(this, 0, 0, RunnerState.Status.alive);
         }
 
     }
@@ -242,9 +241,9 @@ public class GameService {
             return distance * 100 / max;
         }
 
-        public boolean alive() { return status == Status.ALIVE; }
-        public boolean dead() { return status == Status.DEAD; }
-        public boolean saved() { return status == Status.SAVED; }
-        public enum Status { DEAD, ALIVE, SAVED}
+        public boolean alive() { return status == Status.alive; }
+        public boolean dead() { return status == Status.dead; }
+        public boolean saved() { return status == Status.saved; }
+        public enum Status {dead, alive, saved}
     }
 }

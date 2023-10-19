@@ -9,7 +9,7 @@ import java.util.Random;
 public class RockingDukeExtensions {
 
     private static final List<String> DUKES = List.of(
-            "angus", "eddie", "geddy", "generic_bass", "generic_flyingV", "mohawk", "hendrix", "slash"
+            "angus", "eddie", "geddy", "bass", "flyingV", "mohawk", "hendrix", "slash"
     );
 
     /**

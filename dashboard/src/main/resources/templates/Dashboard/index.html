@@ -4,15 +4,25 @@
   <div
     id="game-container"
     hx-headers='{"{inject:csrf.headerName}":"{inject:csrf.token}"}'
-    hx-trigger="sse:game"
+    hx-trigger="sse:GameUpdate"
     hx-get="{uri:Dashboard.index}"
     hx-swap="morph:innerHTML"
->
+  >
     {#fragment id=game}
-      <div class="controls-container d-flex justify-content-center align-items-center flex-column">
-        {#include Dashboard/partials/watcher /}
+        <div class="board-container d-flex justify-content-center align-items-center"
+          hx-trigger="sse:BoardUpdate"
+          hx-get="{uri:Dashboard.board}"
+          hx-swap="morph:innerHTML"
+      >
+        {#include Dashboard/board /}
       </div>
-      {#include Dashboard/partials/board /}
+      <div class="controls-container d-flex justify-content-center align-items-center flex-column"
+           hx-trigger="sse:ControlsUpdate"
+           hx-get="{uri:Dashboard.watcher}"
+           hx-swap="morph:innerHTML"
+      >
+        {#include Dashboard/watcher /}
+      </div>
     {/fragment}
   </div>
 </div>

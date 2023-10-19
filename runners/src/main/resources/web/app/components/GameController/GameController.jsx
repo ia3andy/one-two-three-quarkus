@@ -104,7 +104,7 @@ export default function GameController() {
   }
 
   function run(distance) {
-    if (user && (distance === 0 || state.status === 'on')) {
+    if (user && (distance === 0 || state.status === 'alive')) {
       console.log(`Run: ${distance}`);
       clearTimeout(pingTimeout);
       setPingTimeout(null);

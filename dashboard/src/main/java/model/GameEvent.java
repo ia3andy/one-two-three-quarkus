@@ -15,13 +15,23 @@ public record GameEvent(GameEventType type, String runnerId) {
 
 
     public enum GameEventType {
-        START_WATCH,
-        STOP_WATCH,
-        START,
-        STOP,
-        RUN,
-        NEW_RUNNER,
-        SAVED,
-        DEAD;
+        START_WATCH("ControlsUpdate"),
+        STOP_WATCH("ControlsUpdate"),
+        START("GameUpdate"),
+        STOP("GameUpdate"),
+        RUN("BoardUpdate"),
+        NEW_RUNNER("BoardUpdate"),
+        SAVED("BoardUpdate"),
+        DEAD("BoardUpdate");
+
+        private final String sseEventName;
+
+        GameEventType(String sseEventName) {
+            this.sseEventName = sseEventName;
+        }
+
+        public String sseEventName() {
+            return sseEventName;
+        }
     }
 }

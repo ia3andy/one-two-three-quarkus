@@ -12,10 +12,15 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.sse.OutboundSseEvent;
 import jakarta.ws.rs.sse.Sse;
+import model.GameEvent;
+import model.GameEvent.GameEventType;
 import org.jboss.resteasy.reactive.RestStreamElementType;
 import service.GameService;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This defines a REST controller, each method will be available under the "Classname/method" URI by convention
@@ -31,16 +36,28 @@ public class Dashboard extends HxController {
 
         public static native TemplateInstance index();
         public static native TemplateInstance index$game();
+
+        public static native TemplateInstance board();
+        public static native TemplateInstance watcher();
     }
 
 
-    // This overrides the convention and makes this method available at "/renarde"
     @Path("/")
     public TemplateInstance index() {
         if(isHxRequest()) {
             return  Templates.index$game();
         }
         return Templates.index();
+    }
+
+    public TemplateInstance watcher() {
+        onlyHxRequest();
+        return Templates.watcher();
+    }
+
+    public TemplateInstance board() {
+        onlyHxRequest();
+        return Templates.board();
     }
 
     @POST
@@ -54,7 +71,15 @@ public class Dashboard extends HxController {
         return gameService.events()
                 .group().intoLists()
                 .every(Duration.ofMillis(200))
-                .map(g -> sse.newEvent("game", ""));
+                .map(g -> sse.newEvent(resolveSseEventName(g), ""));
+    }
+
+    private static String resolveSseEventName(List<GameEvent> g) {
+        final Set<String> events = g.stream().map(GameEvent::type).map(GameEventType::sseEventName).collect(Collectors.toSet());
+        if (events.size() == 1) {
+            return events.iterator().next();
+        }
+        return "GameUpdate";
     }
 
     @POST
