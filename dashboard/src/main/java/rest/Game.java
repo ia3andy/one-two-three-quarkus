@@ -87,6 +87,9 @@ public class Game {
             return new GameState(GameStatus.off);
         }
         final GameService.RunnerState runner = gameService.getRunner(runnerId);
+        if (runner == null) {
+            return new GameState(GameStatus.off);
+        }
         return new GameState(GameStatus.valueOf(runner.status().toString()));
     }
 

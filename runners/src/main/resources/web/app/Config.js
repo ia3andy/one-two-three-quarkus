@@ -3,11 +3,11 @@
 export const API_CONFIG = window.API_CONFIG;
 
 // Dashboard
-export const TAP_DISTANCE = 1;
+export const TAP_DISTANCE = 30;
 
 // Mobile app
 export const ENABLE_TAPPING = true;
-export const ENABLE_SHAKING = false; // 'false' in v1, set to 'true' in v2
+export const ENABLE_SHAKING = true; // 'false' in v1, set to 'true' in v2
 export const ENABLE_SWIPING = false;
 
 // LOGGING

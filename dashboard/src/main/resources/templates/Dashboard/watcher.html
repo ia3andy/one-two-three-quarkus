@@ -1,12 +1,13 @@
 <div class="watcher d-flex justify-content-center align-items-center flex-grow-1 flex-column">
   {#if cdi:game.isStarted}
   {#if cdi:game.isWatching}
+    <h2 class="one-two-three">One-Two-Three</h2>
     <button class="btn btn-link"
         _="on load audio.game.pause()"
         hx-post="{uri:Dashboard.stopGame}">
       <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
     </button>
-    <h2>Rotterdam</h2>
+    <h2 class="venue">Rotterdam</h2>
   {#else}
     <button class="btn btn-link dance"
         _="on load audio.game.play()"
@@ -15,11 +16,11 @@
     </button>
   {/if}
   {#else}
-  <button class="btn btn-link"
-      _="on load audio.game.stop()"
-      hx-post="{uri:Dashboard.startGame}">
-    <i class="bi bi-music-player"></i>
-  </button>
-
+    <div role="button" class="d-flex justify-content-center align-items-center flex-grow-1 flex-column"
+      hx-post="{uri:Dashboard.startGame}"
+      _="on load audio.game.stop()">
+        <i class="bi bi-music-player"></i>
+      <h2>Click to start rocking!</h2>
+    </div>
   {/if}
 </div>

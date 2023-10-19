@@ -28,6 +28,7 @@ html, body {
 .watcher {
   i {
     font-size: 200px;
+    color: #DA3753;
   }
 
   img.rocking-duke {
@@ -41,14 +42,20 @@ html, body {
   h2 {
     font-size: 40px;
     padding: 20px;
-    border: 5px solid #DA3753;
+    text-transform: uppercase;
     border-radius: 5px;
     color: white;
-    text-transform: uppercase;
-    background-color: black;
+    text-align: center;
+    &.venue {
+      border: 5px solid #DA3753;
+      background-color: black;
+    }
+    &.one-two-three {
+      color: #DA9E40;
+    }
   }
-}
 
+}
 
 @keyframes shake {
   0%  { transform: translate(3px, 1px) rotate(0deg); }
@@ -64,14 +71,13 @@ html, body {
   100%{ transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-
-
 .board-container {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 70px;
   right: 0;
   bottom: 0;
+  border-top: 3px solid white;
 
   .runner {
     position: absolute;
@@ -89,7 +95,17 @@ html, body {
     transition: bottom 200ms linear;
     background-color: white;
     &.dead {
-      border-color: red;
+      border-color: white;
+      background-color: red;
+      color: white;
+      border-radius: 2px;
+    }
+
+    &.saved {
+      border-color: #DA9E40;
+      background-color: black;
+      color: white;
+
     }
   }
 }

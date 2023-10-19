@@ -27,11 +27,10 @@ const RankModalOverlay = styled.div`
 `;
 
 export default function RankModal(props) {
-  const rank = props.data && props.data.overall.findIndex((u) => u.name === props.user.name) + 1;
   return (
     <RankModalOverlay>
-      <h1>Overall Rank</h1>
-      <div className="rank">{rank}</div>
+      <h1>{props.text}</h1>
+      {props.rank && <div className="rank">{rank}</div>}
     </RankModalOverlay>
   );
 }

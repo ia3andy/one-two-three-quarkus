@@ -1,8 +1,10 @@
 package model;
 
-public record GameEvent(GameEventType type, String runnerId) {
+import java.util.Map;
+
+public record GameEvent(GameEventType type, String runnerId, Map<String, String> data) {
     public GameEvent(GameEventType type) {
-        this(type, null);
+        this(type, null, Map.of());
     }
 
     public boolean forAll() {

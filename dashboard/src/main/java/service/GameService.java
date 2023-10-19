@@ -55,8 +55,6 @@ public class GameService {
     @ConfigProperty(name = "game.rock-max-duration", defaultValue = "10")
     public int rockMaxDuration;
 
-
-
     @ConfigProperty(name = "game.time-margin-millis")
     public int timeMarginMillis;
 
@@ -89,6 +87,7 @@ public class GameService {
 
     public void stop() {
         started.set(null);
+        watching.set(null);
         runners.replaceAll((r, v) -> v.runner().initialState());
         emitEvent(STOP);
     }
@@ -111,7 +110,7 @@ public class GameService {
         Log.debugf("game-event: %s -> %s", type, runnerId == null ? "*" : runnerId);
         final MultiEmitter<? super GameEvent> emitter = eventsEmitter.get();
         if (emitter != null) {
-            emitter.emit(new GameEvent(type, runnerId));
+            emitter.emit(new GameEvent(type, runnerId, Map.of()));
         }
     }
 
@@ -162,9 +161,6 @@ public class GameService {
     }
 
     public RunnerState getRunner(String runnerId) {
-        if(!this.runners.containsKey(runnerId)) {
-            throw new IllegalArgumentException("Invalid runner id: " + runnerId);
-        }
         return this.runners.get(runnerId);
     }
 

@@ -68,15 +68,11 @@ function Main(props) {
       );
     case 'dead':
       return (
-          <EndDiv>
-            RIP
-          </EndDiv>
+          <RankModal text="RIP" />
       );
     case 'saved':
       return (
-          <EndDiv>
-            SAVED
-          </EndDiv>
+          <RankModal text="SAVED" />
       );
     case 'completed':
       return (

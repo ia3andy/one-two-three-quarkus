@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.net.URL;
 
 @QuarkusTest
-@WithPlaywright(debug = true)
+@WithPlaywright
 public class UITest {
 
     @InjectPlaywright
@@ -35,8 +35,8 @@ public class UITest {
         Assertions.assertEquals("Dashboard", title);
 
         // Make sure the web app is loaded and hits the backend
-        final ElementHandle el = page.waitForSelector(".container h1");
+        final ElementHandle el = page.waitForSelector(".container h2");
         String greeting = el.innerText();
-        Assertions.assertEquals("One-Two-Three Quarkus", greeting);
+        Assertions.assertEquals("CLICK TO START ROCKING!", greeting);
     }
 }

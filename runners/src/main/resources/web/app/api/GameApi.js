@@ -59,17 +59,17 @@ export function events(user, setState, reset) {
     switch (e.type) {
       case 'START':
         reset();
-        setState({ status: 'alive' });
+        setState({ status: 'alive', data: e.data });
         break;
       case 'STOP':
         reset();
-        setState({ status: 'off'});
+        setState({ status: 'off', data: e.data});
         break;
       case 'DEAD':
-        setState({ status: 'dead'});
+        setState({ status: 'dead', data: e.data});
         break;
       case 'SAVED':
-        setState({ status: 'saved'});
+        setState({ status: 'saved', data: e.data});
         break;
       default:
         break;
