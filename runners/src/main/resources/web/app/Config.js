@@ -1,9 +1,10 @@
+import { DEV_MODE } from './api/Utils';
 
 
 export const API_CONFIG = window.API_CONFIG;
 
 // Dashboard
-export const TAP_DISTANCE = 30;
+export const TAP_DISTANCE = DEV_MODE ? 10 : 1;
 
 // Mobile app
 export const ENABLE_TAPPING = true;
