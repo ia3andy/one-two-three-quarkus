@@ -12,7 +12,7 @@
 
     <dependencyManagement>
         <dependencies>
-                      <!-- LOCKING for mvnpm-->
+            <!-- Fix conflicts for mvnpm-->
             <dependency>
                 <groupId>org.mvnpm</groupId>
                 <artifactId>inherits</artifactId>
@@ -42,6 +42,17 @@
                 <groupId>org.mvnpm.at.babel</groupId>
                 <artifactId>helper-split-export-declaration</artifactId>
                 <version>7.22.6</version>
+            </dependency>
+            <!-- locking because of sync prob-->
+            <dependency>
+                <groupId>org.mvnpm.at.babel</groupId>
+                <artifactId>helpers</artifactId>
+                <version>7.23.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mvnpm.at.babel</groupId>
+                <artifactId>traverse</artifactId>
+                <version>7.23.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -166,6 +177,22 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>se.vandmo</groupId>
+                <artifactId>dependency-lock-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <format>pom</format>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
