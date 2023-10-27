@@ -12,6 +12,16 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- locker -->
+            <dependency>
+                <groupId>org.acme</groupId>
+                <artifactId>one-two-three-quarkus-runners-locker</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Fix conflicts for mvnpm-->
             <dependency>
                 <groupId>org.mvnpm</groupId>
@@ -32,27 +42,6 @@
                 <groupId>org.mvnpm</groupId>
                 <artifactId>source-map-js</artifactId>
                 <version>1.0.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mvnpm.at.babel</groupId>
-                <artifactId>compat-data</artifactId>
-                <version>7.22.9</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mvnpm.at.babel</groupId>
-                <artifactId>helper-split-export-declaration</artifactId>
-                <version>7.22.6</version>
-            </dependency>
-            <!-- locking because of sync prob-->
-            <dependency>
-                <groupId>org.mvnpm.at.babel</groupId>
-                <artifactId>helpers</artifactId>
-                <version>7.23.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mvnpm.at.babel</groupId>
-                <artifactId>traverse</artifactId>
-                <version>7.23.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -177,13 +166,10 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>se.vandmo</groupId>
-                <artifactId>dependency-lock-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <configuration>
-                    <format>pom</format>
-                </configuration>
+           <!-- <plugin>
+                <groupId>io.mvnpm</groupId>
+                <artifactId>maven-locker</artifactId>
+                <version>999-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>check</id>
@@ -192,7 +178,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
@@ -250,12 +236,6 @@
         </plugins>
     </build>
     <profiles>
-        <profile>
-            <id>mvnpm</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
         <profile>
             <id>native</id>
             <activation>
