@@ -10,6 +10,24 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <version>1.0.0-SNAPSHOT</version>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.acme</groupId>
+                <artifactId>one-two-three-quarkus-dashboard-locker</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--no synced -->
+            <dependency>
+                <groupId>org.mvnpm</groupId>
+                <artifactId>terser</artifactId>
+                <version>5.21.0</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>io.quarkiverse.renarde</groupId>
@@ -116,6 +134,19 @@
     </dependencies>
     <build>
         <plugins>
+            <!--<plugin>
+                <groupId>io.mvnpm</groupId>
+                <artifactId>maven-locker</artifactId>
+                <version>999-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
@@ -173,12 +204,6 @@
         </plugins>
     </build>
     <profiles>
-        <profile>
-            <id>mvnpm</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
         <profile>
             <id>native</id>
             <activation>
