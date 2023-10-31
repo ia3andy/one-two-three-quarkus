@@ -12,16 +12,6 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <!-- locker -->
-            <dependency>
-                <groupId>org.acme</groupId>
-                <artifactId>one-two-three-quarkus-runners-locker</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- Fix conflicts for mvnpm-->
             <dependency>
                 <groupId>org.mvnpm</groupId>
@@ -166,19 +156,19 @@
     </dependencies>
     <build>
         <plugins>
-           <!-- <plugin>
+            <plugin>
                 <groupId>io.mvnpm</groupId>
-                <artifactId>maven-locker</artifactId>
+                <artifactId>locker-maven-plugin</artifactId>
                 <version>999-SNAPSHOT</version>
+                <extensions>true</extensions>
                 <executions>
                     <execution>
-                        <id>check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
@@ -248,5 +238,6 @@
                 <quarkus.package.type>native</quarkus.package.type>
             </properties>
         </profile>
+
     </profiles>
 </project>

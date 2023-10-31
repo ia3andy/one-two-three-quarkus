@@ -1609,12 +1609,6 @@
         <scope>runtime</scope>
       </dependency>
       <dependency>
-        <groupId>org.mvnpm</groupId>
-        <artifactId>terser</artifactId>
-        <version>5.21.0</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
         <groupId>org.opentest4j</groupId>
         <artifactId>opentest4j</artifactId>
         <version>1.2.0</version>

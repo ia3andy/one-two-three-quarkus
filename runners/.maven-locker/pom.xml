@@ -150,12 +150,6 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>1.2</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
         <groupId>io.github.crac</groupId>
         <artifactId>org-crac</artifactId>
         <version>0.1.3</version>
@@ -2050,7 +2044,7 @@
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>caniuse-lite</artifactId>
-        <version>1.0.30001551</version>
+        <version>1.0.30001558</version>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
@@ -2115,7 +2109,7 @@
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>electron-to-chromium</artifactId>
-        <version>1.4.568</version>
+        <version>1.4.569</version>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
@@ -2490,12 +2484,6 @@
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>1.7.36</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>2.0.6</version>
       </dependency>
@@ -2549,7 +2537,6 @@
     <lock-integrity-commons-cli--commons-cli>sha512:t4rCtBjp6efQvIZmZFdxmdMgQIpvAxUbN4m6w2XJht1SbfhTWZ5jPX5Q/hNsvz65zlDJz6CtOMPMjY7kFvYcQA==</lock-integrity-commons-cli--commons-cli>
     <lock-integrity-commons-codec--commons-codec>sha512:7uZx5m2Ai1a4HhVXRnXPEy12KMAQc21YCRW7+MBISfBN8dld3uoTxOEZ+PClZMcAO+64q0N1ZOCA7icGPB5SuQ==</lock-integrity-commons-codec--commons-codec>
     <lock-integrity-commons-io--commons-io>sha512:OlaY0MmVw5XPRBgAc2FfCHr0L9eOcfIk6ziQjYI9pB8NBPGOahTfZ7OwKDD79ULzW59Dqv45Q38X/hhlX7ysBw==</lock-integrity-commons-io--commons-io>
-    <lock-integrity-commons-logging--commons-logging>sha512:7QDb+r2a4A76Jt1ACYNgHQdv42QIt9ZSAIS0R+XR+lJ85lvWr9y1hQbDqAgyPSjojybLmcb125/2T2Ul7N+lVw==</lock-integrity-commons-logging--commons-logging>
     <lock-integrity-io.github.crac--org-crac>sha512:IClUgGi60QPZ4OODb3TBgm+pMgoiH71Ls/FLSjQjnRhE4/ncn+KoRsg60t++uI2NJ1zvaa9tN1hm3NySwBp3Sw==</lock-integrity-io.github.crac--org-crac>
     <lock-integrity-io.github.x-stream--mxparser>sha512:xleObVNWuf9vgM4vraAoOH94tXCZ6F66SbToDwV/0STDON8hkxkAcuZbcdTxDXSeOJD64Rc45dc1C/RBJft9fg==</lock-integrity-io.github.x-stream--mxparser>
     <lock-integrity-io.netty--netty-buffer>sha512:nwJH2iH3YH2hGD5kJYO3LAPYY8Uo2AvZ9eR6Gg/sIiiAp/7pmlT0VahKfQ+XWN/9fVnQglo2lfPaSgIHQzFnFg==</lock-integrity-io.netty--netty-buffer>
@@ -2912,7 +2899,7 @@
     <lock-integrity-org.mvnpm--brace-expansion>sha512:EZmnyJY8CY9BizXTnuetApY19W4TVxSZjXowuwgDF6sNLr/blKnNaV5hBP19rIAUlbHydJnMtFdyUTBerCgTnQ==</lock-integrity-org.mvnpm--brace-expansion>
     <lock-integrity-org.mvnpm--browserslist>sha512:kdEE4TxGlMUVJe0VQFyCWVKE9YlSjDwRr+zChNLC2oWjzJ3th8pavTkWtNzUMCkqDHtIdBAzpuHPX9KVpaGi4g==</lock-integrity-org.mvnpm--browserslist>
     <lock-integrity-org.mvnpm--camelize>sha512:YGfIY3eVZPSBQHY2btPwMesWbKDJiUXzDgJwNkyIItS+FgE/6OU6Flgqc/1p6QAVVi0yaziUnSoRdM5wqS6GVQ==</lock-integrity-org.mvnpm--camelize>
-    <lock-integrity-org.mvnpm--caniuse-lite>sha512:g6+MULbxgasgRwSQ7ATig9ol/sjzbsn+72uc1zwM6wX/hTcYTe2x/VZwTlmRmOHq3jBDh8P09rKsmsfRcX1n1A==</lock-integrity-org.mvnpm--caniuse-lite>
+    <lock-integrity-org.mvnpm--caniuse-lite>sha512:HIsirv66eLzvRfuhn4QOPGQEOoPquaOZM8qPVMoYMPeEOKPM2CJ0ql/MmFyp/6RqR2T3FIhR0JNdQYZ2eJ3myQ==</lock-integrity-org.mvnpm--caniuse-lite>
     <lock-integrity-org.mvnpm--chalk>sha512:qkrICPtHccGVz8muKyFojpuhy517m7RQnyz3DocbUAfxkNh4egoMWB7b8I6E34KOok94TMCYPy/NItxhV7GOIA==</lock-integrity-org.mvnpm--chalk>
     <lock-integrity-org.mvnpm--classnames>sha512:eMCqYWN00oKSydsyuXY69xy+aRjKsnoaQhgdifpSuPIP5Ul7MS23l2McTz1xjiZsynQ23Lsg0QN1tQ+8KxbJgQ==</lock-integrity-org.mvnpm--classnames>
     <lock-integrity-org.mvnpm--color-convert>sha512:UI4iY/1mMZkm/zVtGXkdsVc8uzDYugT4yZWhYuVfuTyqUBy+huD9MTLV267dQLjI5SrqbgqpNT8IWBfBX9SD2Q==</lock-integrity-org.mvnpm--color-convert>
@@ -2925,7 +2912,7 @@
     <lock-integrity-org.mvnpm--css-to-react-native>sha512:5+9gCYcLPMXX/0ePVWVwQSjNdnEYrocoSF+SmNY1EXOgiN3i/Xb69bvR637eJp1E+WXxwjobzzt9KzgrmASe5Q==</lock-integrity-org.mvnpm--css-to-react-native>
     <lock-integrity-org.mvnpm--csstype>sha512:nF2ZB45uxHSdPCrrSTh1aCmTfYBb6AXizqA8Le9rWKUriYV7fhlWFf0GzYU0oytobOJOo3WuJmYsuPjLpsvUVQ==</lock-integrity-org.mvnpm--csstype>
     <lock-integrity-org.mvnpm--debug>sha512:WNEbHH4voUsZpXzAjK17NxwhzWLrpy8Or1pLEBoxfKEjwYBFR1urA0WbgoWO5BLQ1AaVVWqiCiocz/zJMHScNg==</lock-integrity-org.mvnpm--debug>
-    <lock-integrity-org.mvnpm--electron-to-chromium>sha512:ibllySkd8CcRFqyxVwuaoLYjWtgySj3/bVcqDLxACEqdNbY6qicuAhYIn1xtQwDpF07HxO7wdCyOavBZaFblmw==</lock-integrity-org.mvnpm--electron-to-chromium>
+    <lock-integrity-org.mvnpm--electron-to-chromium>sha512:81ZxYiAQWjC4CW7gkjdx03kr2Y2Fhr3zJyV+fnLNiVldbSr7sbQjlwVBVmKdrpLWt16HStLp3KXoly4DG7exYQ==</lock-integrity-org.mvnpm--electron-to-chromium>
     <lock-integrity-org.mvnpm--escalade>sha512:uN3KgDe3NnlSToOOr6/yD32emsaPKzxKzzqZE2UAj3Xb0FeMFnFQ6VCgEimPmC5pteZv6VYE7gaRrtdHFDMhnw==</lock-integrity-org.mvnpm--escalade>
     <lock-integrity-org.mvnpm--escape-string-regexp>sha512:UKAP9EVzoskRhEDug9tL3kfJlJRv6qVaT1DHyg182ITZ3IE62LsMaeCVULgMRYZYPLXMueMQqhlYcvpqj01k2w==</lock-integrity-org.mvnpm--escape-string-regexp>
     <lock-integrity-org.mvnpm--esutils>sha512:eBhftvKktptPPtgWQbGk2QlNb7pK9wvOoFXXFEd0njoUQGa6o6ArNV/oh2BbpHjILII+rJ4cZ9kbvWkbX7gKzw==</lock-integrity-org.mvnpm--esutils>
@@ -2999,7 +2986,6 @@
     <lock-integrity-org.ow2.asm--asm-util>sha512:9oKE2Pj9Ap8/QoESIlsgNe06QhbPOzTgqsyDwyptRKteXRKLYKE+92jjOWBBpiz2P3/TRF3FoFzgrgOisu0wgA==</lock-integrity-org.ow2.asm--asm-util>
     <lock-integrity-org.ow2.asm--asm>sha512:nmXymDeDcluuGWypObRSRpWHMSRt8cSVCJyOpc5kbed8TgGlqboQZCAWuzJY4XJ+nrzs5udNnjwy9SgCXXa5VQ==</lock-integrity-org.ow2.asm--asm>
     <lock-integrity-org.reactivestreams--reactive-streams>sha512:zatr0VbzkQbNa7/UffH0sKidxKooxowx7xKkYxk8aIiX5BXwG41/DUh7Dmtb0vGQRL+GBXBLAk8m1qofT5okcQ==</lock-integrity-org.reactivestreams--reactive-streams>
-    <lock-integrity-org.slf4j--jcl-over-slf4j>sha512:rCMatEUhu1R4dCrxNiTbXBSuqAnDosE7mJ+6MBhrptuEDy0bSupU+cH3eVR7l1/QQt01P1QCVZJ3TUAZK9cRSA==</lock-integrity-org.slf4j--jcl-over-slf4j>
     <lock-integrity-org.slf4j--slf4j-api>sha512:T4vK/LsQVUKukzOnnxd5qimVcMEpq8cYMxy1lpr1LgblPmRbpS5n676CIAbqlQkxhmVnQt0kpLFn4nC6nlXh4Q==</lock-integrity-org.slf4j--slf4j-api>
     <lock-integrity-org.wildfly.common--wildfly-common>sha512:CyW+OLlbNG/Lvg1lCO5O0vUJMUkf/jy94yvdrgvYiT0UwuWa2GkVgCy2f2dillwNb129WoSuSUEoOWT1rSy12Q==</lock-integrity-org.wildfly.common--wildfly-common>
     <lock-integrity-org.xerial.snappy--snappy-java>sha512:NsKIqoQBe1I2KkmiDRcCFRoWufWFGLaHfxESKUGlSdlPq41RX38a1jhPuUvlaTKKv4Yu2vlwwQoWgySY39qFOw==</lock-integrity-org.xerial.snappy--snappy-java>

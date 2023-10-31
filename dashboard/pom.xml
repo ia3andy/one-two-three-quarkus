@@ -19,13 +19,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--no synced -->
-            <dependency>
-                <groupId>org.mvnpm</groupId>
-                <artifactId>terser</artifactId>
-                <version>5.21.0</version>
-                <scope>runtime</scope>
-            </dependency>
+            <!--Not synced -->
+
         </dependencies>
     </dependencyManagement>
     <dependencies>
