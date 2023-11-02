@@ -1,0 +1,480 @@
+[INFO] org.acme:one-two-three-quarkus-runners:jar:1.0.0-SNAPSHOT
+[INFO] +- io.quarkiverse.quteserverpages:quarkus-qute-server-pages:jar:2.1.0.Final:compile
+[INFO] |  +- io.quarkus:quarkus-qute:jar:3.4.3:compile
+[INFO] |  |  \- io.quarkus.qute:qute-core:jar:3.4.3:compile
+[INFO] |  \- io.quarkus:quarkus-vertx-http:jar:3.4.3:compile
+[INFO] |     +- io.quarkus:quarkus-security-runtime-spi:jar:3.4.3:compile
+[INFO] |     +- io.quarkus:quarkus-credentials:jar:3.4.3:compile
+[INFO] |     +- io.quarkus:quarkus-mutiny:jar:3.4.3:compile
+[INFO] |     |  +- io.quarkus:quarkus-smallrye-context-propagation:jar:3.4.3:compile
+[INFO] |     |  |  \- io.smallrye:smallrye-context-propagation:jar:2.1.0:compile
+[INFO] |     |  |     +- io.smallrye:smallrye-context-propagation-api:jar:2.1.0:compile
+[INFO] |     |  |     \- io.smallrye:smallrye-context-propagation-storage:jar:2.1.0:compile
+[INFO] |     |  \- io.smallrye.reactive:mutiny-smallrye-context-propagation:jar:2.3.1:compile
+[INFO] |     +- io.smallrye.common:smallrye-common-vertx-context:jar:2.1.2:compile
+[INFO] |     |  \- io.smallrye.common:smallrye-common-constraint:jar:2.1.2:compile
+[INFO] |     +- io.quarkus:quarkus-vertx-http-dev-console-runtime-spi:jar:3.4.3:compile
+[INFO] |     +- io.quarkus.security:quarkus-security:jar:2.0.2.Final:compile
+[INFO] |     +- io.quarkus:quarkus-vertx:jar:3.4.3:compile
+[INFO] |     |  +- io.quarkus:quarkus-netty:jar:3.4.3:compile
+[INFO] |     |  |  +- io.netty:netty-codec:jar:4.1.100.Final:compile
+[INFO] |     |  |  \- com.aayushatharva.brotli4j:brotli4j:jar:1.12.0:compile
+[INFO] |     |  |     +- com.aayushatharva.brotli4j:service:jar:1.12.0:compile
+[INFO] |     |  |     \- com.aayushatharva.brotli4j:native-osx-x86_64:jar:1.12.0:compile
+[INFO] |     |  +- io.netty:netty-codec-haproxy:jar:4.1.100.Final:compile
+[INFO] |     |  +- io.quarkus:quarkus-vertx-latebound-mdc-provider:jar:3.4.3:compile
+[INFO] |     |  \- io.smallrye:smallrye-fault-tolerance-vertx:jar:6.2.6:compile
+[INFO] |     +- io.smallrye.reactive:smallrye-mutiny-vertx-web:jar:3.5.0:compile
+[INFO] |     |  +- io.smallrye.reactive:smallrye-mutiny-vertx-web-common:jar:3.5.0:compile
+[INFO] |     |  +- io.smallrye.reactive:smallrye-mutiny-vertx-auth-common:jar:3.5.0:compile
+[INFO] |     |  +- io.smallrye.reactive:smallrye-mutiny-vertx-bridge-common:jar:3.5.0:compile
+[INFO] |     |  \- io.smallrye.reactive:smallrye-mutiny-vertx-uri-template:jar:3.5.0:compile
+[INFO] |     |     \- io.vertx:vertx-uri-template:jar:4.4.5:compile
+[INFO] |     +- io.vertx:vertx-web:jar:4.4.5:compile
+[INFO] |     |  +- io.vertx:vertx-web-common:jar:4.4.5:compile
+[INFO] |     |  +- io.vertx:vertx-auth-common:jar:4.4.5:compile
+[INFO] |     |  \- io.vertx:vertx-bridge-common:jar:4.4.5:compile
+[INFO] |     \- io.github.crac:org-crac:jar:0.1.3:compile
+[INFO] +- io.quarkiverse.web-bundler:quarkus-web-bundler:jar:1.1.4:compile
+[INFO] +- io.quarkus:quarkus-resteasy-reactive:jar:3.4.3:compile
+[INFO] |  +- io.quarkus:quarkus-resteasy-reactive-common:jar:3.4.3:compile
+[INFO] |  |  \- io.quarkus.resteasy.reactive:resteasy-reactive-common:jar:3.4.3:compile
+[INFO] |  |     +- io.quarkus.resteasy.reactive:resteasy-reactive-common-types:jar:3.4.3:compile
+[INFO] |  |     \- org.reactivestreams:reactive-streams:jar:1.0.4:compile
+[INFO] |  +- io.quarkus.resteasy.reactive:resteasy-reactive-vertx:jar:3.4.3:compile
+[INFO] |  |  +- io.smallrye.reactive:smallrye-mutiny-vertx-core:jar:3.5.0:compile
+[INFO] |  |  |  +- io.smallrye.reactive:smallrye-mutiny-vertx-runtime:jar:3.5.0:compile
+[INFO] |  |  |  \- io.smallrye.reactive:vertx-mutiny-generator:jar:3.5.0:compile
+[INFO] |  |  |     \- io.vertx:vertx-codegen:jar:4.4.5:compile
+[INFO] |  |  +- io.quarkus.resteasy.reactive:resteasy-reactive:jar:3.4.3:compile
+[INFO] |  |  +- jakarta.enterprise:jakarta.enterprise.cdi-api:jar:4.0.1:compile
+[INFO] |  |  |  +- jakarta.enterprise:jakarta.enterprise.lang-model:jar:4.0.1:compile
+[INFO] |  |  |  +- jakarta.el:jakarta.el-api:jar:5.0.1:compile
+[INFO] |  |  |  \- jakarta.interceptor:jakarta.interceptor-api:jar:2.1.0:compile
+[INFO] |  |  +- jakarta.ws.rs:jakarta.ws.rs-api:jar:3.1.0:compile
+[INFO] |  |  +- org.jboss.logging:commons-logging-jboss-logging:jar:1.0.0.Final:compile
+[INFO] |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:4.0.0:compile
+[INFO] |  |  |  \- jakarta.activation:jakarta.activation-api:jar:2.1.2:compile
+[INFO] |  |  \- org.jboss.logging:jboss-logging:jar:3.5.3.Final:compile
+[INFO] |  +- io.quarkus:quarkus-jsonp:jar:3.4.3:compile
+[INFO] |  |  \- org.eclipse.parsson:parsson:jar:1.1.4:compile
+[INFO] |  \- io.quarkus:quarkus-virtual-threads:jar:3.4.3:compile
+[INFO] |     \- io.vertx:vertx-core:jar:4.4.5:compile
+[INFO] |        +- io.netty:netty-common:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-buffer:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-transport:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-handler:jar:4.1.100.Final:compile
+[INFO] |        |  \- io.netty:netty-transport-native-unix-common:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-handler-proxy:jar:4.1.100.Final:compile
+[INFO] |        |  \- io.netty:netty-codec-socks:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-codec-http:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-codec-http2:jar:4.1.100.Final:compile
+[INFO] |        +- io.netty:netty-resolver:jar:4.1.100.Final:compile
+[INFO] |        \- io.netty:netty-resolver-dns:jar:4.1.100.Final:compile
+[INFO] |           \- io.netty:netty-codec-dns:jar:4.1.100.Final:compile
+[INFO] +- io.quarkus:quarkus-resteasy-reactive-jackson:jar:3.4.3:compile
+[INFO] |  \- io.quarkus:quarkus-resteasy-reactive-jackson-common:jar:3.4.3:compile
+[INFO] |     \- io.quarkus.resteasy.reactive:resteasy-reactive-jackson:jar:3.4.3:compile
+[INFO] +- io.quarkus:quarkus-arc:jar:3.4.3:compile
+[INFO] |  +- io.quarkus.arc:arc:jar:3.4.3:compile
+[INFO] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
+[INFO] |  |  \- io.smallrye.reactive:mutiny:jar:2.3.1:compile
+[INFO] |  +- io.quarkus:quarkus-core:jar:3.4.3:compile
+[INFO] |  |  +- jakarta.inject:jakarta.inject-api:jar:2.0.1:compile
+[INFO] |  |  +- io.smallrye.common:smallrye-common-os:jar:2.1.2:compile
+[INFO] |  |  +- io.quarkus:quarkus-ide-launcher:jar:3.4.3:compile
+[INFO] |  |  +- io.quarkus:quarkus-development-mode-spi:jar:3.4.3:compile
+[INFO] |  |  +- io.smallrye.config:smallrye-config:jar:3.3.4:compile
+[INFO] |  |  |  \- io.smallrye.config:smallrye-config-core:jar:3.3.4:compile
+[INFO] |  |  |     +- io.smallrye.common:smallrye-common-classloader:jar:2.1.2:compile
+[INFO] |  |  |     \- io.smallrye.config:smallrye-config-common:jar:3.3.4:compile
+[INFO] |  |  +- org.jboss.logmanager:jboss-logmanager:jar:3.0.2.Final:compile
+[INFO] |  |  |  +- io.smallrye.common:smallrye-common-cpu:jar:2.1.2:compile
+[INFO] |  |  |  +- io.smallrye.common:smallrye-common-expression:jar:2.1.2:compile
+[INFO] |  |  |  |  \- io.smallrye.common:smallrye-common-function:jar:2.1.2:compile
+[INFO] |  |  |  +- io.smallrye.common:smallrye-common-net:jar:2.1.2:compile
+[INFO] |  |  |  \- io.smallrye.common:smallrye-common-ref:jar:2.1.2:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging-annotations:jar:2.2.1.Final:compile
+[INFO] |  |  +- org.jboss.threads:jboss-threads:jar:3.5.0.Final:compile
+[INFO] |  |  +- org.slf4j:slf4j-api:jar:2.0.6:compile
+[INFO] |  |  +- org.jboss.slf4j:slf4j-jboss-logmanager:jar:2.0.0.Final:compile
+[INFO] |  |  +- org.wildfly.common:wildfly-common:jar:1.5.4.Final-format-001:compile
+[INFO] |  |  +- io.quarkus:quarkus-bootstrap-runner:jar:3.4.3:compile
+[INFO] |  |  \- io.quarkus:quarkus-fs-util:jar:0.0.9:compile
+[INFO] |  \- org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api:jar:1.3:compile
+[INFO] +- io.quarkus:quarkus-smallrye-openapi:jar:3.4.3:compile
+[INFO] |  \- io.smallrye:smallrye-open-api-core:jar:3.5.2:compile
+[INFO] |     +- org.eclipse.microprofile.openapi:microprofile-openapi-api:jar:3.1.1:compile
+[INFO] |     +- org.eclipse.microprofile.config:microprofile-config-api:jar:3.0.3:compile
+[INFO] |     +- com.fasterxml.jackson.core:jackson-core:jar:2.15.2:compile
+[INFO] |     +- com.fasterxml.jackson.core:jackson-databind:jar:2.15.2:compile
+[INFO] |     |  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.15.2:compile
+[INFO] |     +- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.15.2:compile
+[INFO] |     |  \- org.yaml:snakeyaml:jar:2.1:compile
+[INFO] |     \- io.smallrye:jandex:jar:3.1.3:compile
+[INFO] +- io.quarkus:quarkus-swagger-ui:jar:3.4.3:compile
+[INFO] +- io.quarkus:quarkus-smallrye-reactive-messaging-kafka:jar:3.4.3:compile
+[INFO] |  +- io.quarkus:quarkus-kafka-client:jar:3.4.3:compile
+[INFO] |  |  \- io.quarkus:quarkus-caffeine:jar:3.4.3:compile
+[INFO] |  |     \- com.github.ben-manes.caffeine:caffeine:jar:3.1.5:compile
+[INFO] |  |        \- com.google.errorprone:error_prone_annotations:jar:2.20.0:compile
+[INFO] |  +- io.smallrye.reactive:smallrye-reactive-messaging-kafka:jar:4.9.0:compile
+[INFO] |  |  +- io.smallrye.reactive:smallrye-reactive-messaging-kafka-api:jar:4.9.0:compile
+[INFO] |  |  +- io.smallrye.reactive:smallrye-reactive-messaging-otel:jar:4.9.0:compile
+[INFO] |  |  |  +- io.opentelemetry:opentelemetry-api:jar:1.28.0:compile
+[INFO] |  |  |  |  \- io.opentelemetry:opentelemetry-context:jar:1.28.0:compile
+[INFO] |  |  |  +- io.opentelemetry:opentelemetry-semconv:jar:1.28.0-alpha:compile
+[INFO] |  |  |  +- io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:jar:1.28.0:compile
+[INFO] |  |  |  |  \- io.opentelemetry:opentelemetry-extension-incubator:jar:1.28.0-alpha:runtime
+[INFO] |  |  |  \- io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:jar:1.28.0-alpha:compile
+[INFO] |  |  +- io.smallrye.reactive:smallrye-reactive-converter-api:jar:3.0.0:compile
+[INFO] |  |  +- io.smallrye.reactive:mutiny-zero:jar:1.0.0:compile
+[INFO] |  |  \- io.smallrye.reactive:mutiny-zero-flow-adapters:jar:1.0.0:compile
+[INFO] |  +- io.quarkus:quarkus-jackson:jar:3.4.3:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.15.2:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.15.2:compile
+[INFO] |  |  \- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.15.2:compile
+[INFO] |  +- org.apache.kafka:kafka-clients:jar:3.5.1:compile
+[INFO] |  |  +- com.github.luben:zstd-jni:jar:1.5.5-1:runtime
+[INFO] |  |  +- org.lz4:lz4-java:jar:1.8.0:runtime
+[INFO] |  |  \- org.xerial.snappy:snappy-java:jar:1.1.10.5:runtime
+[INFO] |  +- io.quarkus:quarkus-smallrye-reactive-messaging:jar:3.4.3:compile
+[INFO] |  |  +- io.quarkus:quarkus-mutiny-reactive-streams-operators:jar:3.4.3:compile
+[INFO] |  |  |  +- org.eclipse.microprofile.reactive-streams-operators:microprofile-reactive-streams-operators-api:jar:3.0:compile
+[INFO] |  |  |  +- org.eclipse.microprofile.reactive-streams-operators:microprofile-reactive-streams-operators-core:jar:3.0:compile
+[INFO] |  |  |  \- io.smallrye.reactive:mutiny-reactive-streams-operators:jar:2.3.1:compile
+[INFO] |  |  +- io.quarkus:quarkus-smallrye-reactive-messaging-kotlin:jar:3.4.3:compile
+[INFO] |  |  +- io.smallrye.common:smallrye-common-annotation:jar:2.1.2:compile
+[INFO] |  |  \- io.smallrye.reactive:smallrye-reactive-messaging-health:jar:4.9.0:compile
+[INFO] |  +- io.smallrye.reactive:smallrye-reactive-messaging-provider:jar:4.9.0:compile
+[INFO] |  |  \- io.smallrye.reactive:smallrye-reactive-messaging-api:jar:4.9.0:compile
+[INFO] |  \- jakarta.annotation:jakarta.annotation-api:jar:2.1.1:compile
+[INFO] +- io.quarkus:quarkus-openshift:jar:3.4.3:compile
+[INFO] |  +- io.quarkus:quarkus-kubernetes-client-internal:jar:3.4.3:compile
+[INFO] |  +- io.quarkus:quarkus-container-image-openshift:jar:3.4.3:compile
+[INFO] |  |  \- io.quarkus:quarkus-container-image:jar:3.4.3:compile
+[INFO] |  \- io.quarkus:quarkus-kubernetes:jar:3.4.3:compile
+[INFO] +- io.quarkus:quarkus-smallrye-health:jar:3.4.3:compile
+[INFO] |  +- io.smallrye:smallrye-health:jar:4.0.4:compile
+[INFO] |  |  +- org.eclipse.microprofile.health:microprofile-health-api:jar:4.0.1:compile
+[INFO] |  |  +- io.smallrye:smallrye-health-api:jar:4.0.4:compile
+[INFO] |  |  \- jakarta.json:jakarta.json-api:jar:2.1.2:compile
+[INFO] |  \- io.smallrye:smallrye-health-provided-checks:jar:4.0.4:compile
+[INFO] +- org.mvnpm:react:jar:18.2.0:compile
+[INFO] |  \- org.mvnpm:loose-envify:jar:1.4.0:compile
+[INFO] |     \- org.mvnpm:js-tokens:jar:4.0.0:compile
+[INFO] +- org.mvnpm:react-dom:jar:18.2.0:compile
+[INFO] |  \- org.mvnpm:scheduler:jar:0.23.0:compile
+[INFO] +- org.mvnpm:react-router-dom:jar:6.3.0:compile
+[INFO] |  +- org.mvnpm:react-router:jar:6.3.0:compile
+[INFO] |  \- org.mvnpm:history:jar:5.3.0:compile
+[INFO] |     \- org.mvnpm.at.babel:runtime:jar:7.23.2:compile
+[INFO] |        \- org.mvnpm:regenerator-runtime:jar:0.14.0:compile
+[INFO] +- org.mvnpm:lodash:jar:4.17.21:compile
+[INFO] +- org.mvnpm:styled-components:jar:6.0.7:compile
+[INFO] |  +- org.mvnpm.at.babel:cli:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.jridgewell:trace-mapping:jar:0.3.20:compile
+[INFO] |  |  |  +- org.mvnpm.at.jridgewell:resolve-uri:jar:3.1.1:compile
+[INFO] |  |  |  \- org.mvnpm.at.jridgewell:sourcemap-codec:jar:1.4.15:compile
+[INFO] |  |  +- org.mvnpm:commander:jar:4.1.1:compile
+[INFO] |  |  +- org.mvnpm:convert-source-map:jar:2.0.0:compile
+[INFO] |  |  +- org.mvnpm:fs-readdir-recursive:jar:1.1.0:compile
+[INFO] |  |  +- org.mvnpm:glob:jar:7.2.3:compile
+[INFO] |  |  |  +- org.mvnpm:fs.realpath:jar:1.0.0:compile
+[INFO] |  |  |  +- org.mvnpm:inflight:jar:1.0.6:compile
+[INFO] |  |  |  |  \- org.mvnpm:wrappy:jar:1.0.2:compile
+[INFO] |  |  |  +- org.mvnpm:inherits:jar:2.0.4:compile
+[INFO] |  |  |  +- org.mvnpm:minimatch:jar:3.1.2:compile
+[INFO] |  |  |  |  \- org.mvnpm:brace-expansion:jar:1.1.11:compile
+[INFO] |  |  |  |     +- org.mvnpm:balanced-match:jar:1.0.2:compile
+[INFO] |  |  |  |     \- org.mvnpm:concat-map:jar:0.0.1:compile
+[INFO] |  |  |  +- org.mvnpm:once:jar:1.4.0:compile
+[INFO] |  |  |  \- org.mvnpm:path-is-absolute:jar:1.0.1:compile
+[INFO] |  |  +- org.mvnpm:make-dir:jar:2.1.0:compile
+[INFO] |  |  |  \- org.mvnpm:pify:jar:4.0.1:compile
+[INFO] |  |  \- org.mvnpm:slash:jar:2.0.0:compile
+[INFO] |  +- org.mvnpm.at.babel:core:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.ampproject:remapping:jar:2.2.1:compile
+[INFO] |  |  |  \- org.mvnpm.at.jridgewell:gen-mapping:jar:0.3.3:compile
+[INFO] |  |  |     \- org.mvnpm.at.jridgewell:set-array:jar:1.1.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:code-frame:jar:7.22.13:compile
+[INFO] |  |  |  +- org.mvnpm.at.babel:highlight:jar:7.22.20:compile
+[INFO] |  |  |  \- org.mvnpm:chalk:jar:2.4.2:compile
+[INFO] |  |  |     +- org.mvnpm:ansi-styles:jar:3.2.1:compile
+[INFO] |  |  |     |  \- org.mvnpm:color-convert:jar:1.9.3:compile
+[INFO] |  |  |     |     \- org.mvnpm:color-name:jar:1.1.3:compile
+[INFO] |  |  |     +- org.mvnpm:escape-string-regexp:jar:1.0.5:compile
+[INFO] |  |  |     \- org.mvnpm:supports-color:jar:5.5.0:compile
+[INFO] |  |  |        \- org.mvnpm:has-flag:jar:3.0.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:generator:jar:7.23.0:compile
+[INFO] |  |  |  \- org.mvnpm:jsesc:jar:3.0.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-compilation-targets:jar:7.22.15:compile
+[INFO] |  |  |  +- org.mvnpm:browserslist:jar:4.22.1:compile
+[INFO] |  |  |  |  +- org.mvnpm:caniuse-lite:jar:1.0.30001558:compile
+[INFO] |  |  |  |  +- org.mvnpm:electron-to-chromium:jar:1.4.569:compile
+[INFO] |  |  |  |  +- org.mvnpm:node-releases:jar:2.0.13:compile
+[INFO] |  |  |  |  \- org.mvnpm:update-browserslist-db:jar:1.0.13:compile
+[INFO] |  |  |  |     \- org.mvnpm:escalade:jar:3.1.1:compile
+[INFO] |  |  |  \- org.mvnpm:lru-cache:jar:5.1.1:compile
+[INFO] |  |  |     \- org.mvnpm:yallist:jar:3.1.1:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-module-transforms:jar:7.23.0:compile
+[INFO] |  |  |  +- org.mvnpm.at.babel:helper-simple-access:jar:7.22.5:compile
+[INFO] |  |  |  \- org.mvnpm.at.babel:helper-validator-identifier:jar:7.22.20:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helpers:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:parser:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:template:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:types:jar:7.23.0:compile
+[INFO] |  |  |  +- org.mvnpm.at.babel:helper-string-parser:jar:7.22.5:compile
+[INFO] |  |  |  \- org.mvnpm:to-fast-properties:jar:2.0.0:compile
+[INFO] |  |  +- org.mvnpm:debug:jar:4.3.4:compile
+[INFO] |  |  |  \- org.mvnpm:ms:jar:2.1.2:compile
+[INFO] |  |  +- org.mvnpm:json5:jar:2.2.3:compile
+[INFO] |  |  \- org.mvnpm:semver:jar:6.3.1:compile
+[INFO] |  +- org.mvnpm.at.babel:helper-module-imports:jar:7.22.15:compile
+[INFO] |  +- org.mvnpm.at.babel:plugin-external-helpers:jar:7.22.5:compile
+[INFO] |  |  \- org.mvnpm.at.babel:helper-plugin-utils:jar:7.22.5:compile
+[INFO] |  +- org.mvnpm.at.babel:plugin-proposal-class-properties:jar:7.18.6:compile
+[INFO] |  |  \- org.mvnpm.at.babel:helper-create-class-features-plugin:jar:7.22.15:compile
+[INFO] |  |     +- org.mvnpm.at.babel:helper-annotate-as-pure:jar:7.22.5:compile
+[INFO] |  |     +- org.mvnpm.at.babel:helper-member-expression-to-functions:jar:7.23.0:compile
+[INFO] |  |     +- org.mvnpm.at.babel:helper-optimise-call-expression:jar:7.22.5:compile
+[INFO] |  |     +- org.mvnpm.at.babel:helper-replace-supers:jar:7.22.20:compile
+[INFO] |  |     \- org.mvnpm.at.babel:helper-skip-transparent-expression-wrappers:jar:7.22.5:compile
+[INFO] |  +- org.mvnpm.at.babel:plugin-proposal-object-rest-spread:jar:7.20.7:compile
+[INFO] |  |  +- org.mvnpm.at.babel:compat-data:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-object-rest-spread:jar:7.8.3:compile
+[INFO] |  |  \- org.mvnpm.at.babel:plugin-transform-parameters:jar:7.22.15:compile
+[INFO] |  +- org.mvnpm.at.babel:preset-env:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-validator-option:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-bugfix-safari-id-destructuring-collision-in-function-expression:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-bugfix-v8-spread-parameters-in-optional-chaining:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-proposal-private-property-in-object:jar:7.21.0-placeholder-for-preset-env.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-async-generators:jar:7.8.4:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-class-properties:jar:7.12.13:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-class-static-block:jar:7.14.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-dynamic-import:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-export-namespace-from:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-import-assertions:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-import-attributes:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-import-meta:jar:7.10.4:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-json-strings:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-logical-assignment-operators:jar:7.10.4:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-nullish-coalescing-operator:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-numeric-separator:jar:7.10.4:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-optional-catch-binding:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-optional-chaining:jar:7.8.3:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-private-property-in-object:jar:7.14.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-top-level-await:jar:7.14.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-unicode-sets-regex:jar:7.18.6:compile
+[INFO] |  |  |  \- org.mvnpm.at.babel:helper-create-regexp-features-plugin:jar:7.22.15:compile
+[INFO] |  |  |     \- org.mvnpm:regexpu-core:jar:5.3.2:compile
+[INFO] |  |  |        +- org.mvnpm:regenerate:jar:1.4.2:compile
+[INFO] |  |  |        +- org.mvnpm:regenerate-unicode-properties:jar:10.1.1:compile
+[INFO] |  |  |        +- org.mvnpm.at.babel:regjsgen:jar:0.8.0:compile
+[INFO] |  |  |        +- org.mvnpm:regjsparser:jar:0.9.1:compile
+[INFO] |  |  |        +- org.mvnpm:unicode-match-property-ecmascript:jar:2.0.0:compile
+[INFO] |  |  |        |  +- org.mvnpm:unicode-canonical-property-names-ecmascript:jar:2.0.0:compile
+[INFO] |  |  |        |  \- org.mvnpm:unicode-property-aliases-ecmascript:jar:2.1.0:compile
+[INFO] |  |  |        \- org.mvnpm:unicode-match-property-value-ecmascript:jar:2.1.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-arrow-functions:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-async-generator-functions:jar:7.23.2:compile
+[INFO] |  |  |  \- org.mvnpm.at.babel:helper-remap-async-to-generator:jar:7.22.20:compile
+[INFO] |  |  |     \- org.mvnpm.at.babel:helper-wrap-function:jar:7.22.20:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-async-to-generator:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-block-scoped-functions:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-block-scoping:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-class-properties:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-class-static-block:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-classes:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-computed-properties:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-destructuring:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-dotall-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-duplicate-keys:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-dynamic-import:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-exponentiation-operator:jar:7.22.5:compile
+[INFO] |  |  |  \- org.mvnpm.at.babel:helper-builder-binary-assignment-operator-visitor:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-export-namespace-from:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-for-of:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-function-name:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-json-strings:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-literals:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-logical-assignment-operators:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-member-expression-literals:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-modules-amd:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-modules-commonjs:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-modules-systemjs:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-modules-umd:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-named-capturing-groups-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-new-target:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-nullish-coalescing-operator:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-numeric-separator:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-object-rest-spread:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-object-super:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-optional-catch-binding:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-optional-chaining:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-private-methods:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-private-property-in-object:jar:7.22.11:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-property-literals:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-regenerator:jar:7.22.10:compile
+[INFO] |  |  |  \- org.mvnpm:regenerator-transform:jar:0.15.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-reserved-words:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-shorthand-properties:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-spread:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-sticky-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-template-literals:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-typeof-symbol:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-unicode-escapes:jar:7.22.10:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-unicode-property-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-unicode-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-unicode-sets-regex:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:preset-modules:jar:0.1.6-no-external-plugins:compile
+[INFO] |  |  |  \- org.mvnpm:esutils:jar:2.0.3:compile
+[INFO] |  |  +- org.mvnpm:babel-plugin-polyfill-corejs2:jar:0.4.6:compile
+[INFO] |  |  |  \- org.mvnpm.at.babel:helper-define-polyfill-provider:jar:0.4.3:compile
+[INFO] |  |  |     +- org.mvnpm:lodash.debounce:jar:4.0.8:compile
+[INFO] |  |  |     \- org.mvnpm:resolve:jar:1.22.8:compile
+[INFO] |  |  |        +- org.mvnpm:is-core-module:jar:2.13.1:compile
+[INFO] |  |  |        |  \- org.mvnpm:hasown:jar:2.0.0:compile
+[INFO] |  |  |        |     \- org.mvnpm:function-bind:jar:1.1.2:compile
+[INFO] |  |  |        +- org.mvnpm:path-parse:jar:1.0.7:compile
+[INFO] |  |  |        \- org.mvnpm:supports-preserve-symlinks-flag:jar:1.0.0:compile
+[INFO] |  |  +- org.mvnpm:babel-plugin-polyfill-corejs3:jar:0.8.6:compile
+[INFO] |  |  +- org.mvnpm:babel-plugin-polyfill-regenerator:jar:0.5.3:compile
+[INFO] |  |  \- org.mvnpm:core-js-compat:jar:3.33.1:compile
+[INFO] |  +- org.mvnpm.at.babel:preset-react:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-react-display-name:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-react-jsx:jar:7.22.15:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-transform-react-jsx-development:jar:7.22.5:compile
+[INFO] |  |  \- org.mvnpm.at.babel:plugin-transform-react-pure-annotations:jar:7.22.5:compile
+[INFO] |  +- org.mvnpm.at.babel:preset-typescript:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:plugin-syntax-jsx:jar:7.22.5:compile
+[INFO] |  |  \- org.mvnpm.at.babel:plugin-transform-typescript:jar:7.22.15:compile
+[INFO] |  |     \- org.mvnpm.at.babel:plugin-syntax-typescript:jar:7.22.5:compile
+[INFO] |  +- org.mvnpm.at.babel:traverse:jar:7.23.2:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-environment-visitor:jar:7.22.20:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-function-name:jar:7.23.0:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-hoist-variables:jar:7.22.5:compile
+[INFO] |  |  +- org.mvnpm.at.babel:helper-split-export-declaration:jar:7.22.6:compile
+[INFO] |  |  \- org.mvnpm:globals:jar:11.12.0:compile
+[INFO] |  +- org.mvnpm.at.emotion:is-prop-valid:jar:1.2.1:compile
+[INFO] |  |  \- org.mvnpm.at.emotion:memoize:jar:0.8.1:compile
+[INFO] |  +- org.mvnpm.at.emotion:unitless:jar:0.8.1:compile
+[INFO] |  +- org.mvnpm.at.types:stylis:jar:4.2.2:compile
+[INFO] |  +- org.mvnpm:css-to-react-native:jar:3.2.0:compile
+[INFO] |  |  +- org.mvnpm:camelize:jar:1.0.1:compile
+[INFO] |  |  +- org.mvnpm:css-color-keywords:jar:1.0.0:compile
+[INFO] |  |  \- org.mvnpm:postcss-value-parser:jar:4.2.0:compile
+[INFO] |  +- org.mvnpm:csstype:jar:3.1.2:compile
+[INFO] |  +- org.mvnpm:postcss:jar:8.4.31:compile
+[INFO] |  |  +- org.mvnpm:nanoid:jar:3.3.6:compile
+[INFO] |  |  +- org.mvnpm:picocolors:jar:1.0.0:compile
+[INFO] |  |  \- org.mvnpm:source-map-js:jar:1.0.2:compile
+[INFO] |  +- org.mvnpm:shallowequal:jar:1.1.0:compile
+[INFO] |  +- org.mvnpm:stylis:jar:4.3.0:compile
+[INFO] |  \- org.mvnpm:tslib:jar:2.6.2:compile
+[INFO] +- org.mvnpm:classnames:jar:2.3.1:compile
+[INFO] +- org.mvnpm.at.rooks:use-key:jar:4.11.2:compile
+[INFO] +- org.mvnpm:react-bootstrap-icons:jar:1.10.3:compile
+[INFO] |  \- org.mvnpm:prop-types:jar:15.8.1:compile
+[INFO] |     +- org.mvnpm:object-assign:jar:4.1.1:compile
+[INFO] |     \- org.mvnpm:react-is:jar:16.13.1:compile
+[INFO] +- io.quarkus:quarkus-junit5:jar:3.4.3:test
+[INFO] |  +- io.quarkus:quarkus-bootstrap-core:jar:3.4.3:test
+[INFO] |  |  +- io.quarkus:quarkus-bootstrap-app-model:jar:3.4.3:test
+[INFO] |  |  \- io.smallrye.common:smallrye-common-io:jar:2.1.2:compile
+[INFO] |  +- org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.5:test
+[INFO] |  +- io.quarkus:quarkus-test-common:jar:3.4.3:test
+[INFO] |  |  +- io.quarkus:quarkus-core-deployment:jar:3.4.3:test
+[INFO] |  |  |  +- org.aesh:readline:jar:2.4:test
+[INFO] |  |  |  |  \- org.fusesource.jansi:jansi:jar:2.4.0:test
+[INFO] |  |  |  +- org.aesh:aesh:jar:2.7:test
+[INFO] |  |  |  +- io.quarkus.gizmo:gizmo:jar:1.6.1.Final:test
+[INFO] |  |  |  |  \- org.ow2.asm:asm-util:jar:9.5:test
+[INFO] |  |  |  |     \- org.ow2.asm:asm-analysis:jar:9.5:test
+[INFO] |  |  |  +- org.ow2.asm:asm:jar:9.5:test
+[INFO] |  |  |  +- org.ow2.asm:asm-commons:jar:9.5:test
+[INFO] |  |  |  |  \- org.ow2.asm:asm-tree:jar:9.5:test
+[INFO] |  |  |  +- io.quarkus:quarkus-class-change-agent:jar:3.4.3:test
+[INFO] |  |  |  +- io.quarkus:quarkus-devtools-utilities:jar:3.4.3:test
+[INFO] |  |  |  +- io.quarkus:quarkus-builder:jar:3.4.3:test
+[INFO] |  |  |  +- org.graalvm.sdk:graal-sdk:jar:23.0.1:test
+[INFO] |  |  |  \- org.junit.platform:junit-platform-launcher:jar:1.9.3:test
+[INFO] |  |  +- io.quarkus:quarkus-bootstrap-maven-resolver:jar:3.4.3:test
+[INFO] |  |  |  +- io.smallrye.beanbag:smallrye-beanbag-maven:jar:1.3.2:test
+[INFO] |  |  |  |  +- io.smallrye.beanbag:smallrye-beanbag-sisu:jar:1.3.2:test
+[INFO] |  |  |  |  |  \- io.smallrye.beanbag:smallrye-beanbag:jar:1.3.2:test
+[INFO] |  |  |  |  +- javax.inject:javax.inject:jar:1:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-artifact:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-builder-support:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-model:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-model-builder:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-repository-metadata:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-settings:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven.resolver:maven-resolver-api:jar:1.9.13:test
+[INFO] |  |  |  |  +- org.apache.maven.resolver:maven-resolver-impl:jar:1.9.13:test
+[INFO] |  |  |  |  |  \- org.apache.maven.resolver:maven-resolver-named-locks:jar:1.9.13:test
+[INFO] |  |  |  |  +- org.apache.maven.resolver:maven-resolver-spi:jar:1.9.13:test
+[INFO] |  |  |  |  +- org.apache.maven.resolver:maven-resolver-util:jar:1.9.13:test
+[INFO] |  |  |  |  +- org.apache.maven.resolver:maven-resolver-transport-http:jar:1.9.10:test
+[INFO] |  |  |  |  +- org.apache.maven.wagon:wagon-provider-api:jar:3.5.3:test
+[INFO] |  |  |  |  +- org.apache.maven.wagon:wagon-http-shared:jar:3.5.3:test
+[INFO] |  |  |  |  +- org.codehaus.plexus:plexus-interpolation:jar:1.26:test
+[INFO] |  |  |  |  +- org.codehaus.plexus:plexus-utils:jar:3.5.1:test
+[INFO] |  |  |  |  +- org.codehaus.plexus:plexus-xml:jar:4.0.0:test
+[INFO] |  |  |  |  |  \- org.apache.maven:maven-xml-impl:jar:4.0.0-alpha-5:test
+[INFO] |  |  |  |  |     \- org.apache.maven:maven-api-xml:jar:4.0.0-alpha-5:test
+[INFO] |  |  |  |  |        \- org.apache.maven:maven-api-meta:jar:4.0.0-alpha-5:test
+[INFO] |  |  |  |  +- org.codehaus.plexus:plexus-cipher:jar:2.0:test
+[INFO] |  |  |  |  \- org.codehaus.plexus:plexus-sec-dispatcher:jar:2.0:test
+[INFO] |  |  |  +- org.apache.maven:maven-embedder:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-core:jar:3.9.3:test
+[INFO] |  |  |  |  |  \- org.codehaus.plexus:plexus-component-annotations:jar:2.1.0:test
+[INFO] |  |  |  |  +- org.apache.maven:maven-plugin-api:jar:3.9.3:test
+[INFO] |  |  |  |  +- org.apache.maven.shared:maven-shared-utils:jar:3.3.4:test
+[INFO] |  |  |  |  +- com.google.inject:guice:jar:5.1.0:test
+[INFO] |  |  |  |  |  \- aopalliance:aopalliance:jar:1.0:test
+[INFO] |  |  |  |  +- com.google.guava:guava:jar:32.1.1-jre:test
+[INFO] |  |  |  |  +- com.google.guava:failureaccess:jar:1.0.1:test
+[INFO] |  |  |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:test
+[INFO] |  |  |  |  +- org.codehaus.plexus:plexus-classworlds:jar:2.6.0:test
+[INFO] |  |  |  |  \- commons-cli:commons-cli:jar:1.5.0:test
+[INFO] |  |  |  +- org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.3.5:test
+[INFO] |  |  |  +- org.apache.maven:maven-settings-builder:jar:3.9.3:test
+[INFO] |  |  |  +- org.apache.maven:maven-resolver-provider:jar:3.9.3:test
+[INFO] |  |  |  +- org.apache.maven.resolver:maven-resolver-connector-basic:jar:1.9.13:test
+[INFO] |  |  |  +- org.apache.maven.resolver:maven-resolver-transport-wagon:jar:1.9.13:test
+[INFO] |  |  |  +- org.apache.maven.wagon:wagon-http:jar:3.5.3:test
+[INFO] |  |  |  \- org.apache.maven.wagon:wagon-file:jar:3.5.3:test
+[INFO] |  |  +- io.quarkus:quarkus-bootstrap-gradle-resolver:jar:3.4.3:test
+[INFO] |  |  \- commons-io:commons-io:jar:2.13.0:test
+[INFO] |  +- io.quarkus:quarkus-junit5-properties:jar:3.4.3:test
+[INFO] |  +- org.junit.jupiter:junit-jupiter:jar:5.9.3:test
+[INFO] |  |  +- org.junit.jupiter:junit-jupiter-api:jar:5.9.3:test
+[INFO] |  |  |  +- org.junit.platform:junit-platform-commons:jar:1.9.3:test
+[INFO] |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[INFO] |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.9.3:test
+[INFO] |  |  \- org.junit.jupiter:junit-jupiter-engine:jar:5.9.3:test
+[INFO] |  |     \- org.junit.platform:junit-platform-engine:jar:1.9.3:test
+[INFO] |  \- com.thoughtworks.xstream:xstream:jar:1.4.20:test
+[INFO] |     \- io.github.x-stream:mxparser:jar:1.2.2:test
+[INFO] |        \- xmlpull:xmlpull:jar:1.1.3.1:test
+[INFO] +- io.rest-assured:rest-assured:jar:5.3.0:test
+[INFO] |  +- org.apache.groovy:groovy:jar:4.0.6:test
+[INFO] |  +- org.apache.groovy:groovy-xml:jar:4.0.6:test
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.14:test
+[INFO] |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.16:test
+[INFO] |  |  \- commons-codec:commons-codec:jar:1.16.0:test
+[INFO] |  +- org.apache.httpcomponents:httpmime:jar:4.5.14:test
+[INFO] |  +- org.hamcrest:hamcrest:jar:2.1:test
+[INFO] |  +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:test
+[INFO] |  +- io.rest-assured:json-path:jar:5.3.0:test
+[INFO] |  |  +- org.apache.groovy:groovy-json:jar:4.0.6:test
+[INFO] |  |  \- io.rest-assured:rest-assured-common:jar:5.3.0:test
+[INFO] |  \- io.rest-assured:xml-path:jar:5.3.0:test
+[INFO] |     \- org.apache.commons:commons-lang3:jar:3.12.0:test
+[INFO] \- io.quarkiverse.playwright:quarkus-playwright:jar:0.0.1:test
+[INFO]    +- com.microsoft.playwright:playwright:jar:1.37.0:test
+[INFO]    |  +- com.google.code.gson:gson:jar:2.10.1:test
+[INFO]    |  +- org.opentest4j:opentest4j:jar:1.2.0:test
+[INFO]    |  \- com.microsoft.playwright:driver:jar:1.37.0:test
+[INFO]    \- com.microsoft.playwright:driver-bundle:jar:1.37.0:test
