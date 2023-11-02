@@ -22,9 +22,9 @@
         <quarkus-playwright.version>0.0.1</quarkus-playwright.version>
     </properties>
     <modules>
-        <module>dashboard/.maven-locker</module>
+        <module>dashboard/.mvnpm-locker</module>
         <module>dashboard</module>
-        <module>runners/.maven-locker</module>
+        <module>runners/.mvnpm-locker</module>
         <module>runners</module>
     </modules>
     <dependencyManagement>

@@ -153,18 +153,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>io.mvnpm</groupId>
-        <artifactId>locker-maven-plugin</artifactId>
-        <version>999-SNAPSHOT</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${quarkus.platform.version}</version>
@@ -233,7 +221,7 @@
       </properties>
     </profile>
     <profile>
-      <id>locker</id>
+      <id>mvnpm-locker</id>
       <activation>
        <activeByDefault>true</activeByDefault>
       </activation>
