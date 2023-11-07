@@ -221,7 +221,7 @@
       </properties>
     </profile>
     <profile>
-      <id>mvnpm-locker</id>
+      <id>locker</id>
       <activation>
        <activeByDefault>true</activeByDefault>
       </activation>
