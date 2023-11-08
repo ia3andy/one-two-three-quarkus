@@ -50,6 +50,10 @@
     animation: blink 1s infinite linear, dance 1s infinite ease-in-out;
   }
 
+  .btn.reset {
+    color: red;
+  }
+
 }
 
 @keyframes dance {
