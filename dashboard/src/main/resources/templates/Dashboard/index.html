@@ -18,10 +18,10 @@
       </div>
       <div class="controls-container d-flex justify-content-center align-items-center flex-column"
            hx-trigger="sse:ControlsUpdate"
-           hx-get="{uri:Dashboard.watcher}"
+           hx-get="{uri:Dashboard.controls}"
            hx-swap="morph:innerHTML"
       >
-        {#include Dashboard/watcher /}
+        {#include Dashboard/controls /}
       </div>
     {/fragment}
   </div>

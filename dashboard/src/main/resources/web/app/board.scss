@@ -1,0 +1,39 @@
+.board-container {
+  position: absolute;
+  left: 0;
+  top: 70px;
+  right: 0;
+  bottom: 0;
+  border-top: 3px solid white;
+
+  .runner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 50px;
+    height: 70px;
+    width: 70px;
+    font-size: 30px;
+    border: 3px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: bottom 200ms linear;
+    background-color: white;
+
+    &.dead {
+      border-color: white;
+      background-color: red;
+      color: white;
+      border-radius: 2px;
+    }
+
+    &.saved {
+      border-color: #DA9E40;
+      background-color: black;
+      color: white;
+
+    }
+  }
+}

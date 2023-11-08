@@ -9,7 +9,6 @@ import jakarta.inject.Singleton;
 import model.GameEvent;
 import model.GameEvent.GameEventType;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import qute.RockingDukeExtensions;
 
 import java.nio.ByteBuffer;
 import java.time.Duration;
@@ -20,21 +19,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static model.GameEvent.GameEventType.DEAD;
-import static model.GameEvent.GameEventType.NEW_RUNNER;
-import static model.GameEvent.GameEventType.RUN;
-import static model.GameEvent.GameEventType.SAVED;
-import static model.GameEvent.GameEventType.START;
-import static model.GameEvent.GameEventType.START_WATCH;
-import static model.GameEvent.GameEventType.STOP;
-import static model.GameEvent.GameEventType.STOP_WATCH;
-import static model.GameEvent.GameEventType.WARN_START_WATCH;
+import static model.GameEvent.GameEventType.*;
 import static qute.RockingDukeExtensions.randomName;
-import static service.GameService.WatchStatus.NOT_WATCHING;
+import static service.GameService.WatchStatus.ROCKING;
 import static service.GameService.WatchStatus.OFF;
 import static service.GameService.WatchStatus.WARNING;
 import static service.GameService.WatchStatus.WATCHING;
@@ -47,13 +37,15 @@ public class GameService {
 
     private final Multi<GameEvent> events = Multi.createFrom()
             .<GameEvent>emitter(this.eventsEmitter::set).broadcast().toAllSubscribers();
+
+    // State
     private final Map<String, RunnerState> runners = new ConcurrentHashMap<>();
     private final AtomicReference<Instant> started = new AtomicReference<>();
     private final AtomicReference<Instant> watching = new AtomicReference<>();
-
     private final AtomicReference<String> rockingDuke = new AtomicReference<>(randomName());
-
     private final AtomicReference<WatchStatus> watchStatus = new AtomicReference<>(OFF);
+
+    // Configs
 
     @ConfigProperty(name = "game.target-distance")
     public int targetDistance;
@@ -76,7 +68,7 @@ public class GameService {
     public void start() {
         started.set(Instant.now());
         watching.set(null);
-        watchStatus.set(NOT_WATCHING);
+        watchStatus.set(ROCKING);
         emitEvent(START);
         final AtomicLong next = new AtomicLong();
         final Random r = new Random();
@@ -98,7 +90,7 @@ public class GameService {
                         next.set(c + t);
                         Log.infof("waiting: %ss", c);
                         next.set(c + t);
-                    } else if (t > (next.get() - warnWatchDuration) && watchStatus() == NOT_WATCHING) {
+                    } else if (t > (next.get() - warnWatchDuration) && watchStatus() == ROCKING) {
                         warnWatch();
                     }
                 }), t -> {
@@ -127,7 +119,7 @@ public class GameService {
 
     public void stopWatch() {
         watching.set(null);
-        watchStatus.set(NOT_WATCHING);
+        watchStatus.set(ROCKING);
         emitEvent(STOP_WATCH);
     }
 
@@ -160,9 +152,11 @@ public class GameService {
     }
 
     public void reset() {
+        watching.set(null);
         watchStatus.set(OFF);
         started.set(null);
-        runners.clear();
+        runners.replaceAll((r, v) -> v.runner().inactive());
+        emitEvent(RESET);
     }
 
     public Runner newRunner(String prevId) {
@@ -171,8 +165,8 @@ public class GameService {
             runner = runners.get(prevId).runner();
         } else {
             runner = new Runner(runners.size() + 1);
-            runners.put(runner.id(), runner.initialState());
         }
+        runners.put(runner.id(), runner.initialState());
         emitEvent(NEW_RUNNER);
         return runner;
     }
@@ -194,12 +188,17 @@ public class GameService {
         final Instant watchingValue = watching.get();
 
         this.runners.compute(runnerId, (i, state) -> {
-            final long duration = time - started.get().toEpochMilli();
+            final Instant startedTime = started.get();
+            final long duration = startedTime != null ? time - startedTime.toEpochMilli() : 0;
             if (state == null) {
                 return new RunnerState(new Runner(runnerId, runners.size() + 1), distance, time, RunnerState.Status.alive);
             }
             if (distance == 0) {
-                return state;
+                if (state.active()) {
+                    return state;
+                }
+                emitEvent(NEW_RUNNER);
+                return state.runner().initialState();
             }
             if (state.dead() || state.saved()) {
                 emitEvent(GameEventType.valueOf(state.status.toString()), runnerId);
@@ -259,6 +258,10 @@ public class GameService {
             return new RunnerState(this, 0, 0, RunnerState.Status.alive);
         }
 
+        public RunnerState inactive() {
+            return new RunnerState(this, 0, 0, RunnerState.Status.inactive);
+        }
+
     }
 
     public int indexPercentage(int index) {
@@ -282,8 +285,12 @@ public class GameService {
             return status == Status.saved;
         }
 
-        public enum Status {dead, alive, saved}
+        public boolean active() {
+            return status != Status.inactive;
+        }
+
+        public enum Status {dead, alive, saved, inactive}
     }
 
-    public enum WatchStatus {WATCHING, NOT_WATCHING, WARNING, OFF}
+    public enum WatchStatus {WATCHING, ROCKING, WARNING, OFF}
 }

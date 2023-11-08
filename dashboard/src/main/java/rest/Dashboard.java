@@ -31,30 +31,30 @@ public class Dashboard extends HxController {
 
     @Inject GameService gameService;
 
-
     @CheckedTemplate
     public static class Templates {
 
         public static native TemplateInstance index();
+
         public static native TemplateInstance index$game();
 
         public static native TemplateInstance board();
-        public static native TemplateInstance watcher();
-    }
 
+        public static native TemplateInstance controls();
+    }
 
     @Path("/")
     public TemplateInstance index() {
-        if(isHxRequest()) {
-            return  Templates.index$game();
+        if (isHxRequest()) {
+            return Templates.index$game();
         }
         return Templates.index();
     }
 
-    public TemplateInstance watcher() {
-        Log.debugf("watcher status: %s", gameService.watchStatus());
+    public TemplateInstance controls() {
         onlyHxRequest();
-        return Templates.watcher();
+        Log.debugf("Watcher status: %s", gameService.watchStatus());
+        return Templates.controls();
     }
 
     public TemplateInstance board() {
@@ -65,6 +65,11 @@ public class Dashboard extends HxController {
     @POST
     public void startGame() {
         gameService.start();
+    }
+
+    @POST
+    public void reset() {
+        gameService.reset();
     }
 
     @Produces(MediaType.SERVER_SENT_EVENTS)

@@ -1,4 +1,4 @@
-<div class="watcher d-flex justify-content-center align-items-center flex-grow-1 flex-column">
+<div class="controls {cdi:game.watchStatus.toString.toLowerCase} d-flex justify-content-center align-items-center flex-grow-1 flex-column">
   {#if cdi:game.isStarted}
   {#when cdi:game.watchStatus}
     {#is WATCHING}
@@ -28,5 +28,9 @@
         <i class="bi bi-music-player"></i>
       <h2>Click to start rocking!</h2>
     </div>
+    <button class="btn reset" hx-post="{uri:Dashboard.reset}" hx-confirm="Are you sure?">
+      <i class="bi bi-recycle"></i>
+      RESET
+    </button>
   {/if}
 </div>

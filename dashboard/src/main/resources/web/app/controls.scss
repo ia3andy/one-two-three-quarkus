@@ -1,0 +1,147 @@
+.controls-container {
+  position: absolute;
+  opacity: 90%;
+  top: calc(50% - 300px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 600px;
+
+  .btn {
+    color: white;
+  }
+}
+
+.controls {
+  h2 {
+    font-size: 30px;
+    padding: 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+
+    &.venue {
+      font-size: 40px;
+      border: 5px solid #DA3753;
+      background-color: black;
+    }
+
+    &.one-two-three {
+      font-size: 40px;
+      color: #DA9E40;
+    }
+  }
+
+  &.off div i {
+    font-size: 250px;
+    line-height: 250px;
+    color: #DA3753;
+  }
+
+  img.rocking-duke {
+    height: 300px;
+  }
+
+  button.dance {
+    animation: dance 1s infinite ease-in-out;
+  }
+
+  button.blink {
+    animation: blink 1s infinite linear, dance 1s infinite ease-in-out;
+  }
+
+  .btn.reset {
+    color: red;
+  }
+
+}
+
+@keyframes dance {
+  0% {
+    transform: translate(3px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-5px, -2px) rotate(-2deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(7deg);
+  }
+  30% {
+    transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-4px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(2px, 1px) rotate(-5deg);
+  }
+  80% {
+    transform: translate(-1px, -4px) rotate(4deg);
+  }
+  90% {
+    transform: translate(3px, 7px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0.2;
+  }
+  38% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  73% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 0.5;
+  }
+  82% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}

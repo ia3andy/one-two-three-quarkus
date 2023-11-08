@@ -21,6 +21,7 @@ public record GameEvent(GameEventType type, String runnerId, Map<String, String>
         WARN_START_WATCH("ControlsUpdate"),
         START_WATCH("ControlsUpdate"),
         STOP_WATCH("ControlsUpdate"),
+        RESET("GameUpdate"),
         START("GameUpdate"),
         STOP("GameUpdate"),
         RUN("BoardUpdate"),
