@@ -8,16 +8,19 @@ import java.util.Random;
 @TemplateExtension(namespace = "duke")
 public class RockingDukeExtensions {
 
-    private static final List<String> DUKES = List.of(
+    public static final List<String> DUKES = List.of(
             "angus", "eddie", "geddy", "bass", "flyingV", "mohawk", "hendrix", "slash"
     );
 
-    /**
-     * This registers the String.capitalise extension method
-     */
+    public static String randomName() {
+        return DUKES.get(new Random().nextInt(DUKES.size()));
+    }
+
     public static String random() {
-        StringBuilder sb = new StringBuilder("/static/images/rocking_duke_");
-        final int i = new Random().nextInt(DUKES.size());
-        return sb.append(DUKES.get(i)).append(".svg").toString();
+        return get(randomName());
+    }
+
+    public static String get(String name) {
+        return "/static/images/rocking_duke_" + name + ".svg";
     }
 }

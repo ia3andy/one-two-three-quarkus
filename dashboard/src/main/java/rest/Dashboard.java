@@ -1,6 +1,7 @@
 package rest;
 
 import io.quarkiverse.renarde.htmx.HxController;
+import io.quarkus.logging.Log;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import io.smallrye.mutiny.Multi;
@@ -51,6 +52,7 @@ public class Dashboard extends HxController {
     }
 
     public TemplateInstance watcher() {
+        Log.debugf("watcher status: %s", gameService.watchStatus());
         onlyHxRequest();
         return Templates.watcher();
     }

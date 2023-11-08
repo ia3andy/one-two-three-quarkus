@@ -1,4 +1,4 @@
-import { API_CONFIG } from "../Config";
+import { API_CONFIG } from "app-config";
 
 export async function run(user, distance) {
   const fetchOptions = {

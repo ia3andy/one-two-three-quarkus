@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="/static/game.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#000000" />
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/static/images/favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="theme-color" content="#000000"/>
   <meta
       name="description"
       content="One-Two-Three Quarkus"
   />
   <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
   <title>One-Two-Three Quarkus - Runner</title>
-  <script>
-    window.LAUNCH_MODE="{LAUNCH_MODE}";
-    window.API_CONFIG = {
-      game: "{config:property('frontend.api.game') ?: '/api/game'}",
-      run: "{config:property('frontend.api.run') ?: '/api/run'}"
-    };
+  <script type="importmap">
+    {
+      "imports": {
+        "app-config": "./config.js"
+      }
+    }
   </script>
+  {#bundle /}
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
-{#bundle /}
 </body>
 </html>

@@ -1,8 +1,6 @@
 import { DEV_MODE } from './api/Utils';
 
 
-export const API_CONFIG = window.API_CONFIG;
-
 // Dashboard
 export const TAP_DISTANCE = DEV_MODE ? 10 : 1;
 
