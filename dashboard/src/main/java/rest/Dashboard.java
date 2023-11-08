@@ -67,11 +67,6 @@ public class Dashboard extends HxController {
         gameService.start();
     }
 
-    @POST
-    public void reset() {
-        gameService.reset();
-    }
-
     @Produces(MediaType.SERVER_SENT_EVENTS)
     @RestStreamElementType(MediaType.TEXT_PLAIN)
     public Multi<OutboundSseEvent> events(@Context Sse sse) {

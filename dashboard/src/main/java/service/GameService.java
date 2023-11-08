@@ -156,7 +156,6 @@ public class GameService {
         watchStatus.set(OFF);
         started.set(null);
         runners.replaceAll((r, v) -> v.runner().inactive());
-        emitEvent(RESET);
     }
 
     public Runner newRunner(String prevId) {
