@@ -226,12 +226,12 @@ public class GameService {
             final boolean isDetected = isDetected(watchingValue, time);
             final int newDist = state.distance() + distance;
             if (isDetected) {
-                emitEvent(DEAD, runnerId);
+                emitEvent(DEAD, runnerId, Map.of("rank", String.valueOf(getRank(runnerId))));
                 Log.infof("Runner %s is dead at %s", state.runner().name(), newDist);
                 return state.runner().newState(newDist, duration, RunnerState.Status.dead);
             }
             if (newDist >= targetDistance) {
-                emitEvent(SAVED, runnerId);
+                emitEvent(SAVED, runnerId, Map.of("rank", String.valueOf(getRank(runnerId))));
                 Log.infof("Runner %s is saved in %sms", state.runner().name(), time);
                 return state.runner().newState(targetDistance, duration, RunnerState.Status.saved);
             }
@@ -239,6 +239,18 @@ public class GameService {
             Log.infof("Runner %s moved to %s", state.runner().name(), newDist);
             return state.runner().newState(newDist, duration, RunnerState.Status.alive);
         });
+    }
+
+    public int getRank(String id) {
+        final RunnerState state = runners.get(id);
+        if (state == null) {
+            return -1;
+        }
+        final List<Runner> sorted = runners.values().stream()
+                .sorted(rankComparator())
+                .map(RunnerState::runner)
+                .toList();
+        return sorted.indexOf(state.runner()) + 1;
     }
 
     static Comparator<RunnerState> rankComparator() {

@@ -92,7 +92,11 @@ public class Game {
         if (runner == null) {
             return new GameState(GameStatus.off, Map.of());
         }
-        return new GameState(GameStatus.valueOf(runner.status().toString()), Map.of());
+        Map<String, String> data = new HashMap<>();
+        if(runner.gameOver()) {
+            data.put("rank", String.valueOf(gameService.getRank(runnerId)));
+        }
+        return new GameState(GameStatus.valueOf(runner.status().toString()), data);
     }
 
     @Path("/events/{runnerId}")

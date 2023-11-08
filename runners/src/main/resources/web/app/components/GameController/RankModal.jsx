@@ -30,6 +30,12 @@ export default function RankModal(props) {
     return (
         <RankModalOverlay>
             <h1>{props.text}</h1>
+            {props.rank && (
+                <>
+                    <p>You ranked: </p>
+                    <div className="rank">{props.rank}</div>
+                </>
+            )}
         </RankModalOverlay>
     );
 }
