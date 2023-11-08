@@ -21,6 +21,8 @@ import model.GameEvent;
 import service.GameService.Runner;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -84,13 +86,13 @@ public class Game {
     @Produces(MediaType.APPLICATION_JSON)
     public GameState state(@RestPath String runnerId) {
         if (!gameService.isStarted()) {
-            return new GameState(GameStatus.off);
+            return new GameState(GameStatus.off, Map.of());
         }
         final GameService.RunnerState runner = gameService.getRunner(runnerId);
         if (runner == null) {
-            return new GameState(GameStatus.off);
+            return new GameState(GameStatus.off, Map.of());
         }
-        return new GameState(GameStatus.valueOf(runner.status().toString()));
+        return new GameState(GameStatus.valueOf(runner.status().toString()), Map.of());
     }
 
     @Path("/events/{runnerId}")

@@ -55,7 +55,7 @@ export function events(user, setState, reset) {
     return () => {};
   }
   const onEvent = (e) => {
-    console.log(`=> Received game event: ${e.type}`);
+    console.log(`=> Received game event: ${e.type}, ${JSON.stringify(e.data)}`);
     switch (e.type) {
       case 'START':
         reset();

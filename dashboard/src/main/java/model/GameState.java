@@ -1,6 +1,8 @@
 package model;
 
-public record GameState(GameStatus status) {
+import java.util.Map;
+
+public record GameState(GameStatus status, Map<String, String> data) {
 
 
     public enum GameStatus {

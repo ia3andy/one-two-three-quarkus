@@ -14,12 +14,12 @@ const RankModalOverlay = styled.div`
   backdrop-filter: blur(3px);
   align-items: center;
   justify-content: center;
-  
+
   h1 {
     font-size: 2rem;
     text-transform: uppercase;
   }
-  
+
   .rank {
     font-size: 6rem;
     font-weight: bold;
@@ -27,10 +27,9 @@ const RankModalOverlay = styled.div`
 `;
 
 export default function RankModal(props) {
-  return (
-    <RankModalOverlay>
-      <h1>{props.text}</h1>
-      {props.rank && <div className="rank">{rank}</div>}
-    </RankModalOverlay>
-  );
+    return (
+        <RankModalOverlay>
+            <h1>{props.text}</h1>
+        </RankModalOverlay>
+    );
 }

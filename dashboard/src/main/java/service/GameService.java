@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -22,10 +24,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static model.GameEvent.GameEventType.*;
+import static java.util.Comparator.comparing;
+import static model.GameEvent.GameEventType.DEAD;
+import static model.GameEvent.GameEventType.NEW_RUNNER;
+import static model.GameEvent.GameEventType.RUN;
+import static model.GameEvent.GameEventType.SAVED;
+import static model.GameEvent.GameEventType.START;
+import static model.GameEvent.GameEventType.START_WATCH;
+import static model.GameEvent.GameEventType.STOP;
+import static model.GameEvent.GameEventType.STOP_WATCH;
+import static model.GameEvent.GameEventType.WARN_START_WATCH;
 import static qute.RockingDukeExtensions.randomName;
-import static service.GameService.WatchStatus.ROCKING;
 import static service.GameService.WatchStatus.OFF;
+import static service.GameService.WatchStatus.ROCKING;
 import static service.GameService.WatchStatus.WARNING;
 import static service.GameService.WatchStatus.WATCHING;
 
@@ -128,10 +139,14 @@ public class GameService {
     }
 
     private void emitEvent(GameEventType type, String runnerId) {
+        emitEvent(type, runnerId, Map.of());
+    }
+
+    private void emitEvent(GameEventType type, String runnerId, Map<String, String> data) {
         Log.debugf("game-event: %s -> %s", type, runnerId == null ? "*" : runnerId);
         final MultiEmitter<? super GameEvent> emitter = eventsEmitter.get();
         if (emitter != null) {
-            emitter.emit(new GameEvent(type, runnerId, Map.of()));
+            emitter.emit(new GameEvent(type, runnerId, data));
         }
     }
 
@@ -161,11 +176,16 @@ public class GameService {
     public Runner newRunner(String prevId) {
         final Runner runner;
         if (prevId != null && runners.containsKey(prevId)) {
-            runner = runners.get(prevId).runner();
+            final RunnerState state = runners.get(prevId);
+            runner = state.runner();
+            if (!state.active()) {
+                runners.put(runner.id(), runner.initialState());
+            }
         } else {
             runner = new Runner(runners.size() + 1);
+            runners.put(runner.id(), runner.initialState());
         }
-        runners.put(runner.id(), runner.initialState());
+
         emitEvent(NEW_RUNNER);
         return runner;
     }
@@ -213,12 +233,20 @@ public class GameService {
             if (newDist >= targetDistance) {
                 emitEvent(SAVED, runnerId);
                 Log.infof("Runner %s is saved in %sms", state.runner().name(), time);
-                return state.runner().newState(newDist, duration, RunnerState.Status.saved);
+                return state.runner().newState(targetDistance, duration, RunnerState.Status.saved);
             }
             emitEvent(RUN, runnerId);
             Log.infof("Runner %s moved to %s", state.runner().name(), newDist);
             return state.runner().newState(newDist, duration, RunnerState.Status.alive);
         });
+    }
+
+    static Comparator<RunnerState> rankComparator() {
+        return comparing(RunnerState::active).reversed()
+                .thenComparing(comparing(RunnerState::saved).reversed())
+                .thenComparing(comparing(RunnerState::alive).reversed())
+                .thenComparing(comparing(RunnerState::distance).reversed())
+                .thenComparing(RunnerState::duration);
     }
 
     public boolean isStarted() {
@@ -282,6 +310,10 @@ public class GameService {
 
         public boolean saved() {
             return status == Status.saved;
+        }
+
+        public boolean gameOver() {
+            return saved() || dead();
         }
 
         public boolean active() {
