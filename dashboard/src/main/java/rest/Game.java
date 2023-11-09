@@ -93,7 +93,7 @@ public class Game {
             return new GameState(GameStatus.off, Map.of());
         }
         Map<String, String> data = new HashMap<>();
-        if(runner.gameOver()) {
+        if (runner.gameOver()) {
             data.put("rank", String.valueOf(gameService.getRank(runnerId)));
         }
         return new GameState(GameStatus.valueOf(runner.status().toString()), data);

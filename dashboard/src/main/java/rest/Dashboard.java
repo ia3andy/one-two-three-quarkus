@@ -51,6 +51,11 @@ public class Dashboard extends HxController {
         return Templates.index();
     }
 
+    @POST
+    public void reset() {
+        gameService.reset();
+    }
+
     public TemplateInstance controls() {
         onlyHxRequest();
         Log.debugf("Watcher status: %s", gameService.watchStatus());

@@ -25,15 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.Comparator.comparing;
-import static model.GameEvent.GameEventType.DEAD;
-import static model.GameEvent.GameEventType.NEW_RUNNER;
-import static model.GameEvent.GameEventType.RUN;
-import static model.GameEvent.GameEventType.SAVED;
-import static model.GameEvent.GameEventType.START;
-import static model.GameEvent.GameEventType.START_WATCH;
-import static model.GameEvent.GameEventType.STOP;
-import static model.GameEvent.GameEventType.STOP_WATCH;
-import static model.GameEvent.GameEventType.WARN_START_WATCH;
+import static model.GameEvent.GameEventType.*;
 import static qute.RockingDukeExtensions.randomName;
 import static service.GameService.WatchStatus.OFF;
 import static service.GameService.WatchStatus.ROCKING;

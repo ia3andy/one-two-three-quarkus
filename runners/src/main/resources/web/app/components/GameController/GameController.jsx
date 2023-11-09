@@ -68,7 +68,7 @@ function Main(props) {
       );
     case 'dead':
       return (
-          <RankModal text="RIP" rank={props.state.data?.rank}/>
+          <RankModal text="RIP" rank={props.state.data?.rank} />
       );
     case 'saved':
       return (
