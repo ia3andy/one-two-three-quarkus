@@ -68,11 +68,11 @@ function Main(props) {
       );
     case 'dead':
       return (
-          <RankModal text="RIP" />
+          <RankModal text="RIP" rank={props.state.data?.rank}/>
       );
     case 'saved':
       return (
-          <RankModal text="SAVED" />
+          <RankModal text="SAVED" rank={props.state.data?.rank} />
       );
     case 'completed':
       return (
