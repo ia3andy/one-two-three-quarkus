@@ -71,6 +71,12 @@ export function events(user, setState, reset) {
       case 'SAVED':
         setState({ status: 'saved', data: e.data});
         break;
+      case 'GAME_OVER':
+        setState(p => ({ status: p.status, data: e.data}));
+        break;
+      case 'REASSIGN':
+        window.location.reload();
+        break;
       default:
         break;
     }

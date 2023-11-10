@@ -44,6 +44,7 @@ public class GameService {
     // State
     private final Map<String, RunnerState> runners = new ConcurrentHashMap<>();
     private final AtomicReference<Instant> started = new AtomicReference<>();
+    private final AtomicReference<List<Runner>> rank = new AtomicReference<>();
     private final AtomicReference<Instant> watching = new AtomicReference<>();
     private final AtomicReference<String> rockingDuke = new AtomicReference<>(randomName());
     private final AtomicReference<WatchStatus> watchStatus = new AtomicReference<>(OFF);
@@ -68,10 +69,14 @@ public class GameService {
     @ConfigProperty(name = "game.warn-watch-duration", defaultValue = "1")
     public int warnWatchDuration;
 
+    @ConfigProperty(name = "game.max-duration", defaultValue = "90")
+    public int maxDuration;
+
     public void start() {
-        started.set(Instant.now());
+        rank.set(null);
         watching.set(null);
         watchStatus.set(ROCKING);
+        started.set(Instant.now());
         emitEvent(START);
         final AtomicLong next = new AtomicLong();
         final Random r = new Random();
@@ -79,6 +84,16 @@ public class GameService {
         Multi.createFrom().ticks().every(Duration.ofMillis(1000))
                 .subscribe().with(Unchecked.consumer(t -> {
                     if (!isStarted()) {
+                        throw new RuntimeException("Stopped");
+                    }
+                    if (isGameOver()) {
+                        final List<Runner> gameRank = computeRank();
+                        rank.set(gameRank);
+                        watchStatus.set(WatchStatus.GAME_OVER);
+                        Log.infof("Game Over: " + rank());
+                        for (int i = 0; i < rank.get().size(); i++) {
+                            emitEvent(GameEventType.GAME_OVER, gameRank.get(i).id, Map.of("rank", String.valueOf(i + 1)));
+                        }
                         throw new RuntimeException("Stopped");
                     }
                     if (t > next.get()) {
@@ -102,10 +117,20 @@ public class GameService {
 
     public void stop() {
         started.set(null);
+        rank.set(null);
         watching.set(null);
         watchStatus.set(OFF);
         runners.replaceAll((r, v) -> v.runner().initialState());
         emitEvent(STOP);
+    }
+
+    public void reset() {
+        started.set(null);
+        watching.set(null);
+        watchStatus.set(OFF);
+        rank.set(null);
+        runners.replaceAll((r, v) -> v.runner().inactive());
+        emitEvent(RESET);
     }
 
     public void warnWatch() {
@@ -158,20 +183,12 @@ public class GameService {
         return watching.get() != null;
     }
 
-    public void reset() {
-        watching.set(null);
-        watchStatus.set(OFF);
-        started.set(null);
-        runners.replaceAll((r, v) -> v.runner().inactive());
-        emitEvent(RESET);
-    }
-
     public Runner newRunner(String prevId) {
         final Runner runner;
         if (prevId != null && runners.containsKey(prevId)) {
             final RunnerState state = runners.get(prevId);
             runner = state.runner();
-            if (!state.active()) {
+            if (!state.isActive()) {
                 runners.put(runner.id(), runner.initialState());
             }
         } else {
@@ -197,35 +214,53 @@ public class GameService {
     }
 
     public void run(String runnerId, int distance, long time) {
-        final Instant watchingValue = watching.get();
+        if (rank.get() != null) {
+            return;
+        }
 
+        final Instant watchingValue = watching.get();
         this.runners.compute(runnerId, (i, state) -> {
             final Instant startedTime = started.get();
             final long duration = startedTime != null ? time - startedTime.toEpochMilli() : 0;
             if (state == null) {
-                return new RunnerState(new Runner(runnerId, runners.size() + 1), distance, time, RunnerState.Status.alive);
+                emitEvent(REASSIGN, runnerId);
+                return null;
             }
-            if (distance == 0) {
-                if (state.active()) {
-                    return state;
-                }
+            // inactive user becoming active
+            if (!state.isActive()) {
                 emitEvent(NEW_RUNNER);
                 return state.runner().initialState();
             }
-            if (state.dead() || state.saved()) {
+            // Game is not started
+            if (startedTime == null) {
+                return state;
+            }
+            // Timeout
+            if (duration > (maxDuration * 1000L) && !state.gameOver()) {
+                emitEvent(DEAD, runnerId);
+                Log.infof("Runner %s is dead at %s (timeout)", state.runner().name(), state.distance);
+                return state.runner().newState(state.distance, maxDuration, RunnerState.Status.dead);
+            }
+            // Ping
+            if (distance == 0) {
+                return state;
+            }
+            // Already over
+            if (state.gameOver()) {
                 emitEvent(GameEventType.valueOf(state.status.toString()), runnerId);
                 return state;
             }
+            // Progressing
             final boolean isDetected = isDetected(watchingValue, time);
             final int newDist = state.distance() + distance;
             if (isDetected) {
-                emitEvent(DEAD, runnerId, Map.of("rank", String.valueOf(getRank(runnerId))));
+                emitEvent(DEAD, runnerId);
                 Log.infof("Runner %s is dead at %s", state.runner().name(), newDist);
                 return state.runner().newState(newDist, duration, RunnerState.Status.dead);
             }
             if (newDist >= targetDistance) {
-                emitEvent(SAVED, runnerId, Map.of("rank", String.valueOf(getRank(runnerId))));
-                Log.infof("Runner %s is saved in %sms", state.runner().name(), time);
+                emitEvent(SAVED, runnerId);
+                Log.infof("Runner %s is saved in %sms", state.runner().name(), duration);
                 return state.runner().newState(targetDistance, duration, RunnerState.Status.saved);
             }
             emitEvent(RUN, runnerId);
@@ -234,20 +269,32 @@ public class GameService {
         });
     }
 
-    public int getRank(String id) {
-        final RunnerState state = runners.get(id);
-        if (state == null) {
-            return -1;
-        }
-        final List<Runner> sorted = runners.values().stream()
+    public List<Runner> rank() {
+        return rank.get();
+    }
+
+    public boolean isGameOver() {
+        return rank.get() != null || runners.values().stream().allMatch(RunnerState::gameOver);
+    }
+
+    private List<Runner> computeRank() {
+        return runners.values().stream()
                 .sorted(rankComparator())
                 .map(RunnerState::runner)
                 .toList();
-        return sorted.indexOf(state.runner()) + 1;
+    }
+
+    public int getRank(String id) {
+        final RunnerState state = runners.get(id);
+        final List<Runner> rankValue = rank.get();
+        if (state == null || rankValue == null) {
+            return -1;
+        }
+        return rankValue.indexOf(state.runner()) + 1;
     }
 
     static Comparator<RunnerState> rankComparator() {
-        return comparing(RunnerState::active).reversed()
+        return comparing(RunnerState::isActive).reversed()
                 .thenComparing(comparing(RunnerState::saved).reversed())
                 .thenComparing(comparing(RunnerState::alive).reversed())
                 .thenComparing(comparing(RunnerState::distance).reversed())
@@ -321,12 +368,12 @@ public class GameService {
             return saved() || dead();
         }
 
-        public boolean active() {
+        public boolean isActive() {
             return status != Status.inactive;
         }
 
         public enum Status {dead, alive, saved, inactive}
     }
 
-    public enum WatchStatus {WATCHING, ROCKING, WARNING, OFF}
+    public enum WatchStatus {WATCHING, ROCKING, WARNING, GAME_OVER, OFF}
 }

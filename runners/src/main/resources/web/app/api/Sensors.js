@@ -4,12 +4,12 @@ export function startSwipeSensor(handler) {
   let startX = 0;
   let startY = 0;
 
-  document.addEventListener('touchstart', (e) => {
+  function onTouchStart(e) {
     startX = e.changedTouches[0].screenX;
     startY = e.changedTouches[0].screenY;
-  });
+  }
 
-  document.addEventListener('touchend', (e) => {
+  function onTouchEnd(e) {
     const xDiff = startX - e.changedTouches[0].screenX;
     const yDiff = startY - e.changedTouches[0].screenY;
     if (Math.abs(xDiff) > Math.abs(yDiff)) { /* most significant */
@@ -27,7 +27,17 @@ export function startSwipeSensor(handler) {
       /* up swipe */
       handler('up', yDiff);
     }
-  });
+  }
+
+  document.addEventListener('touchstart', onTouchStart);
+  document.addEventListener('touchend', onTouchEnd);
+
+
+  return () => {
+    document.removeEventListener('touchstart', onTouchStart);
+    document.removeEventListener('touchend', onTouchEnd);
+  }
+
 }
 
 let shake;

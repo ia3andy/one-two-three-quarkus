@@ -20,6 +20,7 @@ import service.GameService;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -82,7 +83,7 @@ public class Dashboard extends HxController {
     }
 
     private static String resolveSseEventName(List<GameEvent> g) {
-        final Set<String> events = g.stream().map(GameEvent::type).map(GameEventType::sseEventName).collect(Collectors.toSet());
+        final Set<String> events = g.stream().map(GameEvent::type).map(GameEventType::sseEventName).filter(Objects::nonNull).collect(Collectors.toSet());
         if (events.size() == 1) {
             return events.iterator().next();
         }

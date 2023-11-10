@@ -1,5 +1,4 @@
 <div class="controls {cdi:game.watchStatus.toString.toLowerCase} d-flex justify-content-center align-items-center flex-grow-1 flex-column">
-  {#if cdi:game.isStarted}
   {#when cdi:game.watchStatus}
     {#is WATCHING}
       <h2 class="one-two-three">One-Two-Three</h2>
@@ -14,23 +13,30 @@
         hx-post="{uri:Dashboard.stopGame}">
         <img class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
       </button>
-    {#else}
+    {#is ROCKING}
       <button class="btn btn-link dance"
           _="on load audio.game.play()"
           hx-post="{uri:Dashboard.stopGame}">
         <img class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
       </button>
-  {/when}
-  {#else}
-    <div role="button" class="d-flex justify-content-center align-items-center flex-grow-1 flex-column"
-      hx-post="{uri:Dashboard.startGame}"
-      _="on load audio.game.stop()">
+    {#is GAME_OVER}
+      <button class="btn btn-link"
+        _="on load audio.game.stop()"
+        hx-post="{uri:Dashboard.stopGame}">
+        <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
+      </button>
+      <h2 class="venue">{config:venue}</h2>
+      <h2 class="one-two-three">You are Awesome!</h2>
+    {#else}
+      <div role="button" class="d-flex justify-content-center align-items-center flex-grow-1 flex-column"
+        hx-post="{uri:Dashboard.startGame}"
+        _="on load audio.game.stop()">
         <i class="bi bi-music-player"></i>
-      <h2>Click to start rocking!</h2>
-    </div>
-    <button class="btn reset" hx-post="{uri:Dashboard.reset}" hx-confirm="Are you sure?">
-      <i class="bi bi-recycle"></i>
-      RESET
-    </button>
-  {/if}
+        <h2>Click to start rocking!</h2>
+      </div>
+      <button class="btn reset" hx-post="{uri:Dashboard.reset}" hx-confirm="Are you sure?">
+        <i class="bi bi-recycle"></i>
+        RESET
+      </button>
+  {/when}
 </div>

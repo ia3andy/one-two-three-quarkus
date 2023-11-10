@@ -43,7 +43,7 @@ function Generator(props) {
     // Swipe
     if (ENABLE_SWIPING) {
         useEffect(() => {
-            sensors.startSwipeSensor((d, diff) => {
+            return sensors.startSwipeSensor((d, diff) => {
                 const power = Math.min(100, Math.round(Math.abs(diff) / 5));
                 run();
                 props.run(power);
@@ -54,12 +54,13 @@ function Generator(props) {
     // Shake
     useEffect(() => {
         if (props.shakingEnabled) {
-            sensors.startShakeSensor((magnitude) => {
+            return sensors.startShakeSensor((magnitude) => {
                 const power = Math.round(Math.min(magnitude, 100) * 3 / 100);
                 run();
                 props.run(power);
             });
         }
+        return () => {};
     }, [props.shakingEnabled]);
 
     const onTap = (e) => {

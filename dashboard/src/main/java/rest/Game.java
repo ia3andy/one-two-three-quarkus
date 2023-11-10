@@ -35,7 +35,9 @@ public class Game {
             GameEventType.START,
             GameEventType.STOP,
             GameEventType.DEAD,
-            GameEventType.SAVED
+            GameEventType.SAVED,
+            GameEventType.GAME_OVER,
+            GameEventType.REASSIGN
     );
 
     @Inject GameService gameService;
@@ -93,8 +95,9 @@ public class Game {
             return new GameState(GameStatus.off, Map.of());
         }
         Map<String, String> data = new HashMap<>();
-        if (runner.gameOver()) {
-            data.put("rank", String.valueOf(gameService.getRank(runnerId)));
+        final int rank = gameService.getRank(runnerId);
+        if (rank > 0) {
+            data.put("rank", String.valueOf(rank));
         }
         return new GameState(GameStatus.valueOf(runner.status().toString()), data);
     }
@@ -103,6 +106,10 @@ public class Game {
     @Produces(MediaType.SERVER_SENT_EVENTS)
     @RestStreamElementType(MediaType.APPLICATION_JSON)
     public Multi<GameEvent> events(@RestPath String runnerId) {
+        if (gameService.getRunner(runnerId) == null) {
+            // The server has probably restarted
+            return Multi.createFrom().item(new GameEvent(GameEventType.REASSIGN));
+        }
         return gameService.events()
                 .filter(g -> RUNNER_EVENTS.contains(g.type()))
                 .filter(g -> g.forRunner(runnerId));
