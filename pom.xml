@@ -113,12 +113,6 @@
     </build>
     <profiles>
         <profile>
-            <id>mvnpm</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
             <id>native</id>
             <activation>
                 <property>
