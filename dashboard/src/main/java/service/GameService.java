@@ -142,12 +142,14 @@ public class GameService {
         watching.set(Instant.now());
         watchStatus.set(WATCHING);
         rockingDuke.set(randomName());
+        Log.infof("Start Watch");
         emitEvent(START_WATCH);
     }
 
     public void stopWatch() {
         watching.set(null);
         watchStatus.set(ROCKING);
+        Log.infof("Stop Watch");
         emitEvent(STOP_WATCH);
     }
 

@@ -79,7 +79,7 @@
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>htmx.org</artifactId>
-        <version>1.9.6</version>
+        <version>1.9.9</version>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
@@ -127,7 +127,7 @@
     <lock-integrity-org.mvnpm--buffer-from>sha512:nFhCbFXiM39KGJc7tZaj8UyREdWAtEbd2lCirSrhQhN2kUoKMGKJRq24SJB8RkpmL+R8QTv7l3RkEar61n/p9Q==</lock-integrity-org.mvnpm--buffer-from>
     <lock-integrity-org.mvnpm--commander>sha512:wJu/3D2Zzgx7xxdmX/U76UpqQsSxlPEn5uteH7k63kay9hKYLsldU2461FViUozZ5iUgXy7MK4GrlH0pcxSbLg==</lock-integrity-org.mvnpm--commander>
     <lock-integrity-org.mvnpm--howler>sha512:cYUCiVfW0gQhMvmq7chDEncJgVQAHQBenSxQOE1+DFUuy0z74qSdR2mjWLGdCW6Wa6sIQkshmrmLjiZBEiO5uw==</lock-integrity-org.mvnpm--howler>
-    <lock-integrity-org.mvnpm--htmx.org>sha512:+6kUYmt0qW+YVKodMche3hTSB7oeDdnNre0PBG6iDo4XCovSdepC4K3n6DTHMtPJ+FfQ2aK9DL0WHMn/TM+HpA==</lock-integrity-org.mvnpm--htmx.org>
+    <lock-integrity-org.mvnpm--htmx.org>sha512:CpFM1S1OrHFMzIewGskcFhyRJ0i69I8qALJ2lsHpF1aRk3PEXdXwGAl2Y7rnnWJ+9ZEYl2DJkRijAElZv32vnw==</lock-integrity-org.mvnpm--htmx.org>
     <lock-integrity-org.mvnpm--hyperscript.org>sha512:5Qfwf+huDun3GdSIcuf2nm6VCGdWEuSbk2wQhK4ehSbHD/nApamFTkoymOmOtAz9CvsoZOq3Eu6pcGU/IKrg2w==</lock-integrity-org.mvnpm--hyperscript.org>
     <lock-integrity-org.mvnpm--idiomorph>sha512:v0APsHxA1fTWm22qTZ7PZppyolk6zN35ZoOAP7Kyzz4AFbtjnGPiV3zhrP93aw9HUVDoY/Rj0iMWJlnD2tS+9A==</lock-integrity-org.mvnpm--idiomorph>
     <lock-integrity-org.mvnpm--markdown-it-deflist>sha512:rbBde+TwRN2xrswnr6cXTj0wN5IolEy7Hud478lN89vCPtgdX0Vp6yBVVbI/Ur0KGaR5aI4k2aat+EY6zen+AA==</lock-integrity-org.mvnpm--markdown-it-deflist>
