@@ -81,7 +81,7 @@ function Main(props) {
     default:
       return (
         <LoadingDiv>
-          <div><img src={`/static/bundle/${logo}`} alt="logo" /></div>
+          <div><img src={logo} alt="logo" /></div>
           <div>Waiting for game...</div>
         </LoadingDiv>
       );
