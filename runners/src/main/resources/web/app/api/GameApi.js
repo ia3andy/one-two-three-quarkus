@@ -40,7 +40,7 @@ export async function getState(runner) {
     headers: { Accept: 'application/json' },
   };
   return fetch(
-      `${API_CONFIG.game}/state/${runner}`,
+      `${API_CONFIG.game}/${runner}/state`,
       { ...fetchOptions },
   )
       .then(convertResponse)
@@ -85,7 +85,7 @@ export function events(user, setState, reset) {
   let i = 0;
   function connect() {
     console.log('Connecting to game event stream');
-    stream = new EventSource(`${API_CONFIG.game}/events/${user.id}`);
+    stream = new EventSource(`${API_CONFIG.game}/${user.id}/events`);
     stream.onopen = () => {
       i = 0;
       console.log('Connected to game event stream');

@@ -1,6 +1,7 @@
 package rest;
 
 import io.quarkus.logging.Log;
+import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -83,7 +84,15 @@ public class Game {
         gameService.stop();
     }
 
-    @Path("/state/{runnerId}")
+    @Path("/status")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @NonBlocking
+    public GameService.WatchStatus status() {
+        return gameService.watchStatus();
+    }
+
+    @Path("/{runnerId}/state")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public GameState state(@RestPath String runnerId) {
@@ -102,7 +111,7 @@ public class Game {
         return new GameState(GameStatus.valueOf(runner.status().toString()), data);
     }
 
-    @Path("/events/{runnerId}")
+    @Path("/{runnerId}/events")
     @Produces(MediaType.SERVER_SENT_EVENTS)
     @RestStreamElementType(MediaType.APPLICATION_JSON)
     public Multi<GameEvent> events(@RestPath String runnerId) {
