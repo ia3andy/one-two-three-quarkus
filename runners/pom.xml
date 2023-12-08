@@ -34,9 +34,9 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>io.quarkiverse.quteserverpages</groupId>
-      <artifactId>quarkus-qute-server-pages</artifactId>
-      <version>2.1.0.Final</version>
+      <groupId>io.quarkiverse.qute.web</groupId>
+      <artifactId>quarkus-qute-web</artifactId>
+      <version>3.0.0</version>
     </dependency>
     <dependency>
       <groupId>io.quarkiverse.web-bundler</groupId>
