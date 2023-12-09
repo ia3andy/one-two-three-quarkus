@@ -11,15 +11,16 @@
     bottom: 0;
     left: 0;
     border-radius: 50px;
-    height: 70px;
-    width: 70px;
+    height: 30px;
+    width: 30px;
     font-size: 30px;
-    border: 3px solid blue;
+    font-size: 12px;
+    border: 2px solid blue;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    transition: bottom 200ms linear;
+    transition: all 1000ms linear;
     background-color: white;
 
     &.dead {

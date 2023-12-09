@@ -120,7 +120,7 @@ public class GameService {
         rank.set(null);
         watching.set(null);
         watchStatus.set(OFF);
-        runners.replaceAll((r, v) -> v.runner().initialState());
+        runners.replaceAll((r, v) -> v.active() ? v.runner().initialState() : v.runner().setInactive());
         emitEvent(STOP);
     }
 
@@ -129,7 +129,7 @@ public class GameService {
         watching.set(null);
         watchStatus.set(OFF);
         rank.set(null);
-        runners.replaceAll((r, v) -> v.runner().inactive());
+        runners.replaceAll((r, v) -> v.runner().setInactive());
         emitEvent(RESET);
     }
 
@@ -177,6 +177,10 @@ public class GameService {
         return runners.values();
     }
 
+    public Collection<RunnerState> activeRunners() {
+        return runners.values().stream().filter(RunnerState::active).toList();
+    }
+
     public WatchStatus watchStatus() {
         return watchStatus.get();
     }
@@ -190,7 +194,7 @@ public class GameService {
         if (prevId != null && runners.containsKey(prevId)) {
             final RunnerState state = runners.get(prevId);
             runner = state.runner();
-            if (!state.isActive()) {
+            if (!state.active()) {
                 runners.put(runner.id(), runner.initialState());
             }
         } else {
@@ -229,7 +233,7 @@ public class GameService {
                 return null;
             }
             // inactive user becoming active
-            if (!state.isActive()) {
+            if (!state.active()) {
                 emitEvent(NEW_RUNNER);
                 return state.runner().initialState();
             }
@@ -296,7 +300,7 @@ public class GameService {
     }
 
     static Comparator<RunnerState> rankComparator() {
-        return comparing(RunnerState::isActive).reversed()
+        return comparing(RunnerState::active).reversed()
                 .thenComparing(comparing(RunnerState::saved).reversed())
                 .thenComparing(comparing(RunnerState::alive).reversed())
                 .thenComparing(comparing(RunnerState::distance).reversed())
@@ -339,14 +343,14 @@ public class GameService {
             return new RunnerState(this, 0, 0, RunnerState.Status.alive);
         }
 
-        public RunnerState inactive() {
+        public RunnerState setInactive() {
             return new RunnerState(this, 0, 0, RunnerState.Status.inactive);
         }
 
     }
 
-    public int indexPercentage(int index) {
-        return (int) Math.floor((index + 0.5) * 100 / runners().size());
+    public int indexPercentage(int index, int max) {
+        return (int) Math.floor((index + 0.5) * 100 / max);
     }
 
     public record RunnerState(Runner runner, int distance, long duration, Status status) {
@@ -366,11 +370,15 @@ public class GameService {
             return status == Status.saved;
         }
 
-        public boolean gameOver() {
-            return saved() || dead();
+        public boolean inactive() {
+            return status == Status.inactive;
         }
 
-        public boolean isActive() {
+        public boolean gameOver() {
+            return saved() || dead() || inactive();
+        }
+
+        public boolean active() {
             return status != Status.inactive;
         }
 

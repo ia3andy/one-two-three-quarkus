@@ -76,11 +76,35 @@ public class Dashboard extends HxController {
 
     @Produces(MediaType.SERVER_SENT_EVENTS)
     @RestStreamElementType(MediaType.TEXT_PLAIN)
-    public Multi<OutboundSseEvent> events(@Context Sse sse) {
+    public Multi<OutboundSseEvent> boardEvents(@Context Sse sse) {
         return gameService.events()
+                .filter(e -> e.type().sseEventName().equals("BoardUpdate") || e.type().sseEventName().equals("GameUpdate"))
                 .group().intoLists()
-                .every(Duration.ofMillis(200))
-                .map(g -> sse.newEvent(resolveSseEventName(g), ""));
+                .every(Duration.ofMillis(500))
+                .map(g -> sse.newEvent("BoardUpdate", compactHtml(Templates.board().render())));
+    }
+
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    @RestStreamElementType(MediaType.TEXT_PLAIN)
+    public Multi<OutboundSseEvent> controlsEvents(@Context Sse sse) {
+        return gameService.events()
+                .filter(e -> e.type().sseEventName().equals("ControlsUpdate") || e.type().sseEventName().equals("GameUpdate"))
+                .map(g -> sse.newEvent("ControlsUpdate", compactHtml(Templates.controls().render())));
+    }
+
+    private static String compactHtml(String html) {
+        return html.replaceAll("(\\s+|\\v)", " ");
+    }
+
+    private String resolveEventData(String eventName) {
+       switch (eventName) {
+              case "BoardUpdate":
+                return Templates.board().render();
+              case "ControlsUpdate":
+                return Templates.controls().render();
+              default:
+                return Templates.index$game().render();
+       }
     }
 
     private static String resolveSseEventName(List<GameEvent> g) {

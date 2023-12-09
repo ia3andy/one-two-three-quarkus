@@ -1,28 +1,13 @@
 {#include main.html}
 
-<div class="container" hx-sse="connect:{uri:Dashboard.events}" hx-ext="morph">
+<div class="container"  hx-ext="morph">
   <div
     id="game-container"
     hx-headers='{"{inject:csrf.headerName}":"{inject:csrf.token}"}'
-    hx-trigger="sse:GameUpdate"
-    hx-get="{uri:Dashboard.index}"
-    hx-swap="morph:innerHTML"
-  >
+>
     {#fragment id=game}
-        <div class="board-container d-flex justify-content-center align-items-center"
-          hx-trigger="sse:BoardUpdate"
-          hx-get="{uri:Dashboard.board}"
-          hx-swap="morph:innerHTML"
-      >
-        {#include Dashboard/board /}
-      </div>
-      <div class="controls-container d-flex justify-content-center align-items-center flex-column"
-           hx-trigger="sse:ControlsUpdate"
-           hx-get="{uri:Dashboard.controls}"
-           hx-swap="morph:innerHTML"
-      >
-        {#include Dashboard/controls /}
-      </div>
+      <div class="board-container d-flex justify-content-center align-items-center" hx-ext="sse" sse-connect="{uri:Dashboard.boardEvents}" sse-swap="BoardUpdate" hx-swap="morph:innerHTML">{#include Dashboard/board /}</div>
+      <div class="controls-container d-flex justify-content-center align-items-center flex-column"  hx-ext="sse" sse-connect="{uri:Dashboard.controlsEvents}" sse-swap="ControlsUpdate" hx-swap="morph:innerHTML">{#include Dashboard/controls /}</div>
     {/fragment}
   </div>
 </div>

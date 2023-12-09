@@ -46,7 +46,7 @@ class GameLoader implements Callable<Integer> {
 
 
 
-    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "1000")
+    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "100")
     private int players;
 
     @Option(names = {"-c", "--clicks"}, description = "How many click each player will trigger", defaultValue = "200")
@@ -102,10 +102,11 @@ class GameLoader implements Callable<Integer> {
                     });
         }
         latchLogin.await();
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         System.out.println(users.size() + "users created");
         System.out.println(names.size() + " different names");
         AtomicReference<String> statusRef = new AtomicReference<>("OFF");
+        Random random = new Random();
         while (!Objects.equals(statusRef.get(), "GAME_OVER")) {
             client.request(HttpMethod.GET, portDashboard, urlDashboard.getHost(),
                             "/api/game/status")
@@ -123,13 +124,12 @@ class GameLoader implements Callable<Integer> {
                     });
 
             for (JsonObject user : users) {
-                Thread.sleep(2);
                 if(statusRef.get().equals("ROCKING")) {
                     client.request(HttpMethod.POST, portRunners, urlRunners.getHost(),
                                     "/api/run")
                             .expect(ResponsePredicate.SC_SUCCESS)
                             .ssl(ssl)
-                            .sendJsonObject(new JsonObject().put("distance", power).put("runner", user.getString("id")))
+                            .sendJsonObject(new JsonObject().put("distance", random.nextInt(power)).put("runner", user.getString("id")))
                             .onComplete((r) -> {
                                 if (r.failed()) {
                                     r.cause().printStackTrace();
@@ -137,6 +137,7 @@ class GameLoader implements Callable<Integer> {
                             });
                 }
             }
+            Thread.sleep(5);
 
         }
         System.out.println("game started");
