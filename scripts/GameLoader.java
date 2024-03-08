@@ -3,24 +3,19 @@
 //DEPS io.vertx:vertx-web-client:4.3.4
 //JAVA 17+
 
+
+import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpMethod;
+import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.client.WebClient;
+import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.ext.web.client.predicate.ResponsePredicate;
-import io.vertx.ext.web.codec.BodyCodec;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.net.URL;
-import java.util.concurrent.Callable;
-
-
-import static java.lang.System.*;
-import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpMethod;
-import io.vertx.core.json.JsonObject;
-import io.vertx.ext.web.client.WebClient;
-import io.vertx.ext.web.client.WebClientOptions;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,8 +23,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Command(name = "GameLoader", mixinStandardHelpOptions = true, version = "GameLoader 0.1",
@@ -44,17 +39,22 @@ class GameLoader implements Callable<Integer> {
     @Parameters(index = "1", description = "The url for the runners service", defaultValue = "http://localhost:8080")
     private URL urlRunners;
 
-
-
-    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "100")
+    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "20")
     private int players;
 
     @Option(names = {"-c", "--clicks"}, description = "How many click each player will trigger", defaultValue = "200")
     private int clicks;
 
-    @Option(names = {"--power"}, description = "Click power", defaultValue = "5")
+    @Option(names = {"--power"}, description = "Click power", defaultValue = "4")
     private int power;
 
+    @Option(names = {"--delay"}, description = "Delay", defaultValue = "100")
+    private int delay;
+
+    @Option(names = {"--rip-factor"}, description = "Rip Facor", defaultValue = "5")
+    private int ripPercent = 5;
+
+    private final Random random = new Random();
 
     public static void main(String... args) {
         int exitCode = new CommandLine(new GameLoader()).execute(args);
@@ -124,7 +124,7 @@ class GameLoader implements Callable<Integer> {
                     });
 
             for (JsonObject user : users) {
-                if(statusRef.get().equals("ROCKING")) {
+                if(statusRef.get().equals("ROCKING") || random.nextInt(100) < ripPercent) {
                     client.request(HttpMethod.POST, portRunners, urlRunners.getHost(),
                                     "/api/run")
                             .expect(ResponsePredicate.SC_SUCCESS)
@@ -137,7 +137,7 @@ class GameLoader implements Callable<Integer> {
                             });
                 }
             }
-            Thread.sleep(5);
+            Thread.sleep(delay);
 
         }
         System.out.println("game started");

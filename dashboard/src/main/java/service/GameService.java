@@ -9,6 +9,7 @@ import jakarta.inject.Singleton;
 import model.GameEvent;
 import model.GameEvent.GameEventType;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import utils.NamesUtil;
 
 import java.nio.ByteBuffer;
 import java.time.Duration;
@@ -21,12 +22,13 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.Comparator.comparing;
 import static model.GameEvent.GameEventType.*;
-import static qute.RockingDukeExtensions.randomName;
+import static utils.RockingDukeExtensions.randomName;
 import static service.GameService.WatchStatus.OFF;
 import static service.GameService.WatchStatus.ROCKING;
 import static service.GameService.WatchStatus.WARNING;
@@ -42,6 +44,8 @@ public class GameService {
             .<GameEvent>emitter(this.eventsEmitter::set).broadcast().toAllSubscribers();
 
     // State
+
+    private final AtomicInteger runnersCount = new AtomicInteger();
     private final Map<String, RunnerState> runners = new ConcurrentHashMap<>();
     private final AtomicReference<Instant> started = new AtomicReference<>();
     private final AtomicReference<List<Runner>> rank = new AtomicReference<>();
@@ -198,7 +202,8 @@ public class GameService {
                 runners.put(runner.id(), runner.initialState());
             }
         } else {
-            runner = new Runner(runners.size() + 1);
+
+            runner = new Runner(runnersCount.incrementAndGet());
             runners.put(runner.id(), runner.initialState());
         }
 
@@ -324,7 +329,7 @@ public class GameService {
 
     public record Runner(String id, String name) {
         public Runner(String id, int num) {
-            this(id, "#" + num);
+            this(id, NamesUtil.getNameById(num));
         }
 
         public Runner(String id) {
@@ -332,7 +337,7 @@ public class GameService {
         }
 
         public Runner(int num) {
-            this(shortId(num), num);
+            this(shortId(num), NamesUtil.getNameById(num));
         }
 
         public RunnerState newState(int distance, long duration, RunnerState.Status status) {
@@ -351,6 +356,10 @@ public class GameService {
 
     public int indexPercentage(int index, int max) {
         return (int) Math.floor((index + 0.5) * 100 / max);
+    }
+
+    public String boxSize(int max) {
+        return max > 40 ? "small" : max > 12 ? "medium" : "large";
     }
 
     public record RunnerState(Runner runner, int distance, long duration, Status status) {

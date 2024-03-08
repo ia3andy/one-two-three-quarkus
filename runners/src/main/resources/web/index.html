@@ -11,12 +11,12 @@
   />
   <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
   <title>One-Two-Three Quarkus - Runner</title>
-  <script type="importmap">
-    {
-      "imports": {
-        "app-config": "./config.js"
-      }
-    }
+  <script type="module">
+      window.LAUNCH_MODE="{build:launchMode}";
+      window.API_CONFIG = {
+          game: "{config:property('frontend.api.game') ?: '/api/game'}",
+          run: "{config:property('frontend.api.run') ?: '/api/run'}"
+      };
   </script>
   {#bundle /}
 </head>

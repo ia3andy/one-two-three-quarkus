@@ -1,4 +1,4 @@
-import { LAUNCH_MODE} from 'app-config';
+import { LAUNCH_MODE } from '../Config';
 
 export const IS_TOUCH_DEVICE = (('ontouchstart' in window)
     || (navigator.maxTouchPoints > 0)

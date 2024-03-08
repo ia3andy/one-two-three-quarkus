@@ -65,36 +65,43 @@
       <groupId>org.mvnpm</groupId>
       <artifactId>htmx.org</artifactId>
       <version>1.9.9</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
       <artifactId>idiomorph</artifactId>
       <version>0.0.9</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
       <artifactId>hyperscript.org</artifactId>
       <version>0.9.8</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
       <artifactId>bootstrap</artifactId>
       <version>5.2.3</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
       <artifactId>bootstrap-icons</artifactId>
       <version>1.11.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm.at.popperjs</groupId>
       <artifactId>core</artifactId>
       <version>2.11.8</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
       <artifactId>howler</artifactId>
       <version>2.2.3</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

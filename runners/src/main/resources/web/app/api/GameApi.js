@@ -1,4 +1,3 @@
-import { API_CONFIG } from 'app-config';
 import { DEV_MODE } from "./Utils";
 
 const storage = DEV_MODE ? sessionStorage : localStorage;
