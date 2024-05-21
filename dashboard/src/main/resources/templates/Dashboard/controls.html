@@ -1,6 +1,6 @@
 <div id="controls" class="controls {cdi:game.watchStatus.toString.toLowerCase} d-flex justify-content-center align-items-center flex-grow-1 flex-column">
   {#when cdi:game.watchStatus}
-    {#is WATCHING}
+    {#is NOBODY_MOVE}
       <h2 class="one-two-three">One-Two-Three</h2>
       <button class="btn btn-link"
           _="on load audio.game.pause()"
