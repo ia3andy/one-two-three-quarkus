@@ -146,7 +146,7 @@ public class GameService {
         noBodyMoveStart.set(Instant.now());
         rockingStatus.set(NOBODY_MOVE);
         rockingDuke.set(randomName());
-        Log.infof("Start Nobody Move: %s", noBodyMoveStart.get());
+        Log.infof("Start Nobody Move: %s", noBodyMoveStart.get().toEpochMilli());
         emitEvent(START_WATCH);
     }
 
@@ -202,7 +202,6 @@ public class GameService {
                 runners.put(runner.id(), runner.initialState());
             }
         } else {
-
             runner = new Runner(runnersCount.incrementAndGet());
             runners.put(runner.id(), runner.initialState());
         }
@@ -320,7 +319,7 @@ public class GameService {
         if (noBodyMoveStart == null) {
             return false;
         }
-        return noBodyMoveStart.isAfter(Instant.ofEpochMilli(time).minus(timeMarginMillis, ChronoUnit.MILLIS));
+        return noBodyMoveStart.isAfter(Instant.ofEpochMilli(time).plus(timeMarginMillis, ChronoUnit.MILLIS));
     }
 
     public String getRockingDuke() {

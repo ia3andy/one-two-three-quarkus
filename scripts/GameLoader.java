@@ -39,10 +39,10 @@ class GameLoader implements Callable<Integer> {
     @Parameters(index = "1", description = "The url for the runners service", defaultValue = "http://localhost:8080")
     private URL urlRunners;
 
-    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "20")
+    @Option(names = {"-p", "--players"}, description = "The amount of players to assign", defaultValue = "2000")
     private int players;
 
-    @Option(names = {"-c", "--clicks"}, description = "How many click each player will trigger", defaultValue = "200")
+    @Option(names = {"-c", "--clicks"}, description = "How many click each player will trigger", defaultValue = "100")
     private int clicks;
 
     @Option(names = {"--power"}, description = "Click power", defaultValue = "4")
@@ -51,7 +51,7 @@ class GameLoader implements Callable<Integer> {
     @Option(names = {"--delay"}, description = "Delay", defaultValue = "100")
     private int delay;
 
-    @Option(names = {"--rip-factor"}, description = "Rip Facor", defaultValue = "5")
+    @Option(names = {"--rip-factor"}, description = "Rip Factor", defaultValue = "5")
     private int ripPercent = 5;
 
     private final Random random = new Random();
@@ -87,6 +87,7 @@ class GameLoader implements Callable<Integer> {
                     .onComplete(r -> {
                         if (r.failed()) {
                             r.cause().printStackTrace();
+                            latchLogin.countDown();
                             return;
                         }
                         try {
@@ -96,10 +97,14 @@ class GameLoader implements Callable<Integer> {
                             System.out.println("login " + user + " " + index);
                             latchLogin.countDown();
                         } catch (Exception e) {
+                            latchLogin.countDown();
                             System.out.println(r.result().bodyAsString());
                         }
 
                     });
+            if(i % 10 == 0) {
+                Thread.sleep(3);
+            }
         }
         latchLogin.await();
         Thread.sleep(1000);
