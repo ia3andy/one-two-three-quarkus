@@ -80,7 +80,7 @@ public class Dashboard extends HxController {
         return gameService.events()
                 .filter(e -> e.type().sseEventName().equals("BoardUpdate") || e.type().sseEventName().equals("GameUpdate"))
                 .group().intoLists()
-                .every(Duration.ofMillis(500))
+                .every(Duration.ofMillis(250))
                 .map(g -> sse.newEvent("BoardUpdate", compactHtml(Templates.board().render())));
     }
 

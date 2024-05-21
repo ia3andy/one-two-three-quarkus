@@ -8,6 +8,11 @@
 
   .btn {
     color: white;
+    font-size: 20px;
+
+    &:hover {
+      color: orange;
+    }
   }
 }
 
@@ -51,7 +56,11 @@
   }
 
   .btn.reset {
-    color: red;
+    color: orange;
+
+    &:hover {
+      color: red;
+    }
   }
 
 }
