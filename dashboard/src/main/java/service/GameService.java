@@ -319,7 +319,7 @@ public class GameService {
         if (noBodyMoveStart == null) {
             return false;
         }
-        return noBodyMoveStart.isAfter(Instant.ofEpochMilli(time).plus(timeMarginMillis, ChronoUnit.MILLIS));
+        return Instant.ofEpochMilli(time).isAfter(noBodyMoveStart.plus(timeMarginMillis, ChronoUnit.MILLIS));
     }
 
     public String getRockingDuke() {

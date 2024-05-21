@@ -27,6 +27,10 @@
       </button>
       <h2 class="venue">{config:venue}</h2>
       <h2 class="one-two-three">You are Awesome!</h2>
+      <button class="btn" hx-post="{uri:Dashboard.stopGame}">
+        <i class="bi bi-sign-stop"></i>
+        STOP
+      </button>
     {#else}
       <div role="button" class="d-flex justify-content-center align-items-center flex-grow-1 flex-column"
         hx-post="{uri:Dashboard.startGame}"
