@@ -29,10 +29,10 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.util.Comparator.comparing;
 import static model.GameEvent.GameEventType.*;
 import static utils.RockingDukeExtensions.randomName;
-import static service.GameService.WatchStatus.OFF;
-import static service.GameService.WatchStatus.ROCKING;
-import static service.GameService.WatchStatus.WARNING;
-import static service.GameService.WatchStatus.WATCHING;
+import static service.GameService.RockingStatus.OFF;
+import static service.GameService.RockingStatus.ROCKING;
+import static service.GameService.RockingStatus.WARNING;
+import static service.GameService.RockingStatus.NOBODY_MOVE;
 
 @Singleton
 @Named("game")
@@ -49,9 +49,9 @@ public class GameService {
     private final Map<String, RunnerState> runners = new ConcurrentHashMap<>();
     private final AtomicReference<Instant> started = new AtomicReference<>();
     private final AtomicReference<List<Runner>> rank = new AtomicReference<>();
-    private final AtomicReference<Instant> watching = new AtomicReference<>();
+    private final AtomicReference<Instant> noBodyMoveStart = new AtomicReference<>();
     private final AtomicReference<String> rockingDuke = new AtomicReference<>(randomName());
-    private final AtomicReference<WatchStatus> watchStatus = new AtomicReference<>(OFF);
+    private final AtomicReference<RockingStatus> rockingStatus = new AtomicReference<>(OFF);
 
     // Configs
 
@@ -78,8 +78,8 @@ public class GameService {
 
     public void start() {
         rank.set(null);
-        watching.set(null);
-        watchStatus.set(ROCKING);
+        noBodyMoveStart.set(null);
+        rockingStatus.set(ROCKING);
         started.set(Instant.now());
         emitEvent(START);
         final AtomicLong next = new AtomicLong();
@@ -93,7 +93,7 @@ public class GameService {
                     if (isGameOver()) {
                         final List<Runner> gameRank = computeRank();
                         rank.set(gameRank);
-                        watchStatus.set(WatchStatus.GAME_OVER);
+                        rockingStatus.set(RockingStatus.GAME_OVER);
                         Log.infof("Game Over: " + rank());
                         for (int i = 0; i < rank.get().size(); i++) {
                             emitEvent(GameEventType.GAME_OVER, gameRank.get(i).id, Map.of("rank", String.valueOf(i + 1)));
@@ -102,18 +102,18 @@ public class GameService {
                     }
                     if (t > next.get()) {
                         long c;
-                        if (isWatching()) {
+                        if (getNoBodyMoveStart()) {
                             c = r.nextLong(rockMaxDuration - rockMinDuration) + rockMinDuration;
-                            stopWatch();
+                            rockingTime();
                         } else {
                             c = r.nextLong(watchMaxDuration - watchMinDuration) + watchMinDuration;
-                            startWatch();
+                            noBodyMoves();
                         }
                         next.set(c + t);
                         Log.infof("waiting: %ss", c);
                         next.set(c + t);
                     } else if (t > (next.get() - warnWatchDuration) && watchStatus() == ROCKING) {
-                        warnWatch();
+                        warnRockers();
                     }
                 }), t -> {
                 });
@@ -122,38 +122,38 @@ public class GameService {
     public void stop() {
         started.set(null);
         rank.set(null);
-        watching.set(null);
-        watchStatus.set(OFF);
+        noBodyMoveStart.set(null);
+        rockingStatus.set(OFF);
         runners.replaceAll((r, v) -> v.active() ? v.runner().initialState() : v.runner().setInactive());
         emitEvent(STOP);
     }
 
     public void reset() {
         started.set(null);
-        watching.set(null);
-        watchStatus.set(OFF);
+        noBodyMoveStart.set(null);
+        rockingStatus.set(OFF);
         rank.set(null);
         runners.replaceAll((r, v) -> v.runner().setInactive());
         emitEvent(RESET);
     }
 
-    public void warnWatch() {
-        watchStatus.set(WARNING);
-        emitEvent(WARN_START_WATCH);
+    public void warnRockers() {
+        rockingStatus.set(WARNING);
+        emitEvent(WARN_STOP_ROCKING);
     }
 
-    public void startWatch() {
-        watching.set(Instant.now());
-        watchStatus.set(WATCHING);
+    public void noBodyMoves() {
+        noBodyMoveStart.set(Instant.now());
+        rockingStatus.set(NOBODY_MOVE);
         rockingDuke.set(randomName());
-        Log.infof("Start Watch");
+        Log.infof("Start Nobody Move: %s", noBodyMoveStart.get());
         emitEvent(START_WATCH);
     }
 
-    public void stopWatch() {
-        watching.set(null);
-        watchStatus.set(ROCKING);
-        Log.infof("Stop Watch");
+    public void rockingTime() {
+        noBodyMoveStart.set(null);
+        rockingStatus.set(ROCKING);
+        Log.infof("Rocking time: %s", Instant.now().toEpochMilli());
         emitEvent(STOP_WATCH);
     }
 
@@ -185,12 +185,12 @@ public class GameService {
         return runners.values().stream().filter(RunnerState::active).toList();
     }
 
-    public WatchStatus watchStatus() {
-        return watchStatus.get();
+    public RockingStatus watchStatus() {
+        return rockingStatus.get();
     }
 
-    public boolean isWatching() {
-        return watching.get() != null;
+    public boolean getNoBodyMoveStart() {
+        return noBodyMoveStart.get() != null;
     }
 
     public Runner newRunner(String prevId) {
@@ -229,7 +229,7 @@ public class GameService {
             return;
         }
 
-        final Instant watchingValue = watching.get();
+        final Instant noBodyMoveStart = this.noBodyMoveStart.get();
         this.runners.compute(runnerId, (i, state) -> {
             final Instant startedTime = started.get();
             final long duration = startedTime != null ? time - startedTime.toEpochMilli() : 0;
@@ -262,11 +262,11 @@ public class GameService {
                 return state;
             }
             // Progressing
-            final boolean isDetected = isDetected(watchingValue, time);
+            final boolean isDetected = isDetected(noBodyMoveStart, time);
             final int newDist = state.distance() + distance;
             if (isDetected) {
                 emitEvent(DEAD, runnerId);
-                Log.infof("Runner %s is dead at %s", state.runner().name(), newDist);
+                Log.infof("Runner %s is dead after %sm (Time of death: %s)", state.runner().name(), newDist, time);
                 return state.runner().newState(newDist, duration, RunnerState.Status.dead);
             }
             if (newDist >= targetDistance) {
@@ -275,7 +275,7 @@ public class GameService {
                 return state.runner().newState(targetDistance, duration, RunnerState.Status.saved);
             }
             emitEvent(RUN, runnerId);
-            Log.infof("Runner %s moved to %s", state.runner().name(), newDist);
+            Log.infof("Runner %s moved to %s at %s", state.runner().name(), newDist, time);
             return state.runner().newState(newDist, duration, RunnerState.Status.alive);
         });
     }
@@ -313,14 +313,14 @@ public class GameService {
     }
 
     public boolean isStarted() {
-        return OFF != watchStatus.get();
+        return OFF != rockingStatus.get();
     }
 
-    private boolean isDetected(Instant watching, long time) {
-        if (watching == null) {
+    private boolean isDetected(Instant noBodyMoveStart, long time) {
+        if (noBodyMoveStart == null) {
             return false;
         }
-        return watching.isAfter(Instant.ofEpochMilli(time).minus(timeMarginMillis, ChronoUnit.MILLIS));
+        return noBodyMoveStart.isAfter(Instant.ofEpochMilli(time).minus(timeMarginMillis, ChronoUnit.MILLIS));
     }
 
     public String getRockingDuke() {
@@ -394,5 +394,5 @@ public class GameService {
         public enum Status {dead, alive, saved, inactive}
     }
 
-    public enum WatchStatus {WATCHING, ROCKING, WARNING, GAME_OVER, OFF}
+    public enum RockingStatus {NOBODY_MOVE, ROCKING, WARNING, GAME_OVER, OFF}
 }

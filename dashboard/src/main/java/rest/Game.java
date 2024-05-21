@@ -1,6 +1,5 @@
 package rest;
 
-import io.quarkus.logging.Log;
 import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
@@ -21,7 +20,6 @@ import service.GameService;
 import model.GameEvent;
 import service.GameService.Runner;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -88,7 +86,7 @@ public class Game {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @NonBlocking
-    public GameService.WatchStatus status() {
+    public GameService.RockingStatus status() {
         return gameService.watchStatus();
     }
 

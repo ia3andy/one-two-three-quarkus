@@ -18,7 +18,7 @@ public record GameEvent(GameEventType type, String runnerId, Map<String, String>
 
     public enum GameEventType {
 
-        WARN_START_WATCH("ControlsUpdate"),
+        WARN_STOP_ROCKING("ControlsUpdate"),
         START_WATCH("ControlsUpdate"),
         STOP_WATCH("ControlsUpdate"),
         RESET("GameUpdate"),
