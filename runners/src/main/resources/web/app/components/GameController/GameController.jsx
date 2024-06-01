@@ -119,6 +119,9 @@ export default function GameController() {
 
   useEffect(() => {
     gameApi.assign().then(setUser);
+    if (shakingEnabled) {
+      sensors.enableShakeSensor();
+    }
   }, []);
   useEffect(() => {
     if (user && !pingTimeout) {

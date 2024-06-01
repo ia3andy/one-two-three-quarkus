@@ -30,7 +30,21 @@ Open multiple runners on http://localhost:8080/
 
 Create a Kafka Cluster, then (after logging with `oc` and selecting the project):
 
+
+Deploy Dashboard (only one pod max):
 ```shell
+cd dashboard
 quarkus build -Dquarkus.kubernetes.deploy=true --clean
+```
+
+Get dashboard route:
+```shell
+oc get route one-two-three-quarkus-dashboard -o jsonpath='https://{.spec.host}/api/game'
+```
+
+Deploy Runners (scale to N):
+```shell
+cd ../runners
+quarkus build -Dquarkus.kubernetes.deploy=true --clean -Dfrontend.api.game=DASHBOARD_API_GAME_URL
 ```
 
