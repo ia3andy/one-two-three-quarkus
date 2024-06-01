@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static io.smallrye.mutiny.helpers.Subscriptions.complete;
 import static java.util.Comparator.comparing;
 import static model.GameEvent.GameEventType.*;
 import static utils.RockingDukeExtensions.randomName;
@@ -44,7 +45,7 @@ public class GameService {
             .<GameEvent>emitter(this.eventsEmitter::set).broadcast().toAllSubscribers();
 
     // State
-
+    private final AtomicInteger gameId = new AtomicInteger();
     private final AtomicInteger runnersCount = new AtomicInteger();
     private final Map<String, RunnerState> runners = new ConcurrentHashMap<>();
     private final AtomicReference<Instant> started = new AtomicReference<>();
@@ -85,20 +86,27 @@ public class GameService {
         final AtomicLong next = new AtomicLong();
         final Random r = new Random();
         next.set(3);
+        final int currentGameId = gameId.incrementAndGet();
+
         Multi.createFrom().ticks().every(Duration.ofMillis(1000))
-                .subscribe().with(Unchecked.consumer(t -> {
-                    if (!isStarted()) {
-                        throw new RuntimeException("Stopped");
+                .select().where(t -> {
+                    if (!isStarted() || gameId.get() != currentGameId) {
+                        return false;
                     }
                     if (isGameOver()) {
-                        final List<Runner> gameRank = computeRank();
-                        rank.set(gameRank);
-                        rockingStatus.set(RockingStatus.GAME_OVER);
-                        Log.infof("Game Over: " + rank());
-                        for (int i = 0; i < rank.get().size(); i++) {
-                            emitEvent(GameEventType.GAME_OVER, gameRank.get(i).id, Map.of("rank", String.valueOf(i + 1)));
+                        var prev = rank.getAndUpdate(l -> {
+                            if (l == null) {
+                                Log.infof("Game Over: " + rank());
+                                rockingStatus.set(RockingStatus.GAME_OVER);
+                                return computeRank();
+                            }
+                            return l;
+                        });
+                        if (prev == null || t > next.get()) {
+                            emitRank();
+                            next.set(5 + t);
                         }
-                        throw new RuntimeException("Stopped");
+                        return true;
                     }
                     if (t > next.get()) {
                         long c;
@@ -109,14 +117,39 @@ public class GameService {
                             c = r.nextLong(watchMaxDuration - watchMinDuration) + watchMinDuration;
                             noBodyMoves();
                         }
-                        next.set(c + t);
                         Log.infof("waiting: %ss", c);
                         next.set(c + t);
                     } else if (t > (next.get() - warnWatchDuration) && watchStatus() == ROCKING) {
                         warnRockers();
                     }
+                    return true;
+                })
+                .subscribe().with(Unchecked.consumer(t -> {
                 }), t -> {
+                    Log.error("Timer error:", t);
                 });
+    }
+
+    private void emitRank() {
+        final List<Runner> rank = rank();
+        if (rank == null) {
+            return;
+        }
+        for (int i = 0; i < rank.size(); i++) {
+            emitEvent(GameEventType.GAME_OVER, rank.get(i).id, Map.of("rank", String.valueOf(i + 1)));
+        }
+    }
+
+    public void timeoutGame() {
+        for (Map.Entry<String, RunnerState> entry : runners.entrySet()) {
+            if (entry.getValue().alive()) {
+                final Instant startedTime = started.get();
+                final long duration = startedTime != null ? Instant.now().toEpochMilli() - startedTime.toEpochMilli() : 0;
+                runners.put(entry.getKey(),
+                        entry.getValue().runner().newState(entry.getValue().distance, duration, RunnerState.Status.dead));
+                emitEvent(DEAD, entry.getKey());
+            }
+        }
     }
 
     public void stop() {
@@ -212,7 +245,7 @@ public class GameService {
 
     private static String shortId(int index) {
         return Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX) + "-"
-                + index;
+               + index;
     }
 
     private static int extractIndex(String id) {
@@ -383,7 +416,7 @@ public class GameService {
         }
 
         public boolean gameOver() {
-            return saved() || dead() || inactive();
+            return !alive();
         }
 
         public boolean active() {

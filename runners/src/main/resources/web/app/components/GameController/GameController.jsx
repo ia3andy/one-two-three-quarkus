@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useSessionStorageState from 'use-session-storage-state';
 import { gameApi, runApi, sensors } from '../../api';
 import Generator from './Generator';
 import { ENABLE_SHAKING } from '../../Config';
@@ -93,7 +94,7 @@ export default function GameController() {
   const [state, setState] = useState({ status: 'offline' });
   const [distance, setDistance] = useState(0);
   const [pingTimeout, setPingTimeout] = useState();
-  const [shakingEnabled, setShakingEnabled] = useState(false);
+  const [shakingEnabled, setShakingEnabled] = useSessionStorageState('shaking-enabled', { defaultValue: false });
 
   function reset() {
     setDistance(0);

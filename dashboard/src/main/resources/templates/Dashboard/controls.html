@@ -4,19 +4,19 @@
       <h2 class="one-two-three">One-Two-Three</h2>
       <button class="btn btn-link"
           _="on load audio.game.pause()"
-          hx-post="{uri:Dashboard.stopGame}">
+          hx-post="{uri:Dashboard.timeoutGame}">
         <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
       </button>
       <h2 class="venue">{config:venue}</h2>
     {#is WARNING}
       <button class="btn btn-link blink"
-        hx-post="{uri:Dashboard.stopGame}">
+        hx-post="{uri:Dashboard.timeoutGame}">
         <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
       </button>
     {#is ROCKING}
       <button class="btn btn-link dance"
           _="on load audio.game.play()"
-          hx-post="{uri:Dashboard.stopGame}">
+          hx-post="{uri:Dashboard.timeoutGame}">
         <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
       </button>
     {#is GAME_OVER}

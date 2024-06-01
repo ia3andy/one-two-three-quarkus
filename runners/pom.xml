@@ -96,6 +96,12 @@
     </dependency>
     <dependency>
       <groupId>org.mvnpm</groupId>
+      <artifactId>use-session-storage-state</artifactId>
+      <version>18.2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mvnpm</groupId>
       <artifactId>react-router-dom</artifactId>
       <version>6.3.0</version>
       <scope>provided</scope>

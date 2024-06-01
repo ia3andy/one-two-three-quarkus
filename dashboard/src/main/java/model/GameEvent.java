@@ -28,7 +28,7 @@ public record GameEvent(GameEventType type, String runnerId, Map<String, String>
 
         GAME_OVER("GameUpdate"),
         NEW_RUNNER("BoardUpdate"),
-        REASSIGN(null),
+        REASSIGN("NoOp"),
         SAVED("BoardUpdate"),
         DEAD("BoardUpdate");
 

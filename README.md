@@ -34,11 +34,3 @@ Create a Kafka Cluster, then (after logging with `oc` and selecting the project)
 quarkus build -Dquarkus.kubernetes.deploy=true --clean
 ```
 
-Once the routes are created, you need to find the dashboard route and create a config-map with it:
-```bash
-oc get route one-two-three-quarkus-dashboard -o jsonpath='https://{.spec.host}/api/game'
-oc create configmap one-two-three-quarkus-envs --from-literal=FRONTEND_API_GAME="https://[REPLACE]/api/game"
-oc rollout retry dc/one-two-three-quarkus-runners
-```
-
-And rollout

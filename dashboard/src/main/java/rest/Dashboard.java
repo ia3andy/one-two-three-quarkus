@@ -120,4 +120,9 @@ public class Dashboard extends HxController {
         gameService.stop();
     }
 
+    @POST
+    public void timeoutGame() {
+        gameService.timeoutGame();
+    }
+
 }
