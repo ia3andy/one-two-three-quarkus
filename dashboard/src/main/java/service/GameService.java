@@ -96,9 +96,10 @@ public class GameService {
                     if (isGameOver()) {
                         var prev = rank.getAndUpdate(l -> {
                             if (l == null) {
-                                Log.infof("Game Over: " + rank());
                                 rockingStatus.set(RockingStatus.GAME_OVER);
-                                return computeRank();
+                                List<Runner> computedRank = computeRank();
+                                Log.infof("Game Over: " + computedRank);
+                                return computedRank;
                             }
                             return l;
                         });
