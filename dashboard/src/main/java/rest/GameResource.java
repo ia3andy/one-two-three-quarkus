@@ -28,7 +28,7 @@ import java.util.Set;
  * This defines a REST controller, each method will be available under the "Classname/method" URI by convention
  */
 @Path("/api/game")
-public class Game {
+public class GameResource {
 
     private static final Set<GameEventType> RUNNER_EVENTS = Set.of(
             GameEventType.START,
