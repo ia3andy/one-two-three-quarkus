@@ -1,5 +1,6 @@
 package rest;
 
+import entity.Game;
 import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
@@ -21,6 +22,7 @@ import model.GameEvent;
 import service.GameService.Runner;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,7 +30,7 @@ import java.util.Set;
  * This defines a REST controller, each method will be available under the "Classname/method" URI by convention
  */
 @Path("/api/game")
-public class Game {
+public class GameResource {
 
     private static final Set<GameEventType> RUNNER_EVENTS = Set.of(
             GameEventType.START,
@@ -121,5 +123,12 @@ public class Game {
                 .filter(g -> RUNNER_EVENTS.contains(g.type()))
                 .filter(g -> g.forRunner(runnerId));
     }
+
+    @GET
+    @Path("/all")
+    public List<Game> all() {
+        return Game.listAll();
+    }
+
 
 }
