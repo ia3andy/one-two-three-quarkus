@@ -4,6 +4,7 @@ import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.MultiEmitter;
 import io.smallrye.mutiny.unchecked.Unchecked;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.inject.Singleton;
 import model.GameEvent;
@@ -26,7 +27,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static io.smallrye.mutiny.helpers.Subscriptions.complete;
 import static java.util.Comparator.comparing;
 import static model.GameEvent.GameEventType.*;
 import static utils.RockingDukeExtensions.randomName;
@@ -77,6 +77,9 @@ public class GameService {
     @ConfigProperty(name = "game.max-duration", defaultValue = "90")
     public int maxDuration;
 
+    @Inject
+    ScoreService scoreService;
+
     public void start() {
         rank.set(null);
         noBodyMoveStart.set(null);
@@ -103,6 +106,9 @@ public class GameService {
                             }
                             return l;
                         });
+                        if (prev == null) {
+                            scoreService.persistRank(rank());
+                        }
                         if (prev == null || t > next.get()) {
                             emitRank();
                             next.set(5 + t);
