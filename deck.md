@@ -1,3 +1,6 @@
+---
+theme: quarkus
+---
 ![Quarkus](deck-assets/hero_worldtour.png)
 
 ## A day in the life of a `Quarkus developer`
