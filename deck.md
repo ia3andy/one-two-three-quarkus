@@ -3,67 +3,52 @@ theme: quarkus
 ---
 ![Quarkus](deck-assets/hero_worldtour.png)
 
-## A day in the life of a `Quarkus developer`
+## A day in the life of a `Quarkus full-stack developer`
 
 ---
 
-# 👻
+## Martin Stefanko
 
-- Martin Stefanko `@xstefank`
-- Andy Damevin `@ia3andy`
+- Principal Software engineer, Red Hat
+- BrnoJUG leader
+- MicroProfile committer
+- Author of Quarkus in Action
+- `@xstefank`
+
+---
+
+## Andy Damevin
+
+- Principal Software engineer, Red Hat
+- Quarkus team
+- Lead of Quarkus's web initiatives
+- `@ia3andy`
 
 ---
 
 ### What is Quarkus?
 
-- Open Source framework for…
+- Open Source Cloud-Native Java framework
+- Tailored for both the JVM and native (GraalVM)
+- Build time vs Runtime processing (extensions)
+
+--
+
+### What Quarkus can offer?
+
+- Lower memory usage and faster startups
+- Easy containerization and cloud deployments
+- Community and Standards
+- Developer Joy
+
+---
+
+### What we can create with Quarkus?
+
 - Cloud-Native, Serverless, Micro-Services, Lambdas, Command-Lines…
 - And Web Applications!
 
 ---
-
-### Why Quarkus?
-
-- Developer Joy
-- Container First
-- Community and Standards
-- Imperative and Reactive
-
----
-
-### What is an extension?
-
-- Adds `functionality` to a Quarkus application
-- Not just a `plain` dependency
-- Consists of two parts:
-    - `build-time` module (hidden)
-    - `runtime` module
-
---
-
-### Where can I find extensions?
-
-<br>
-
-### `extensions.quarkus.io`
-
---
-
-### Can I contribute a new extension?
-
-Yes, meet the [Quarkiverse Hub](https://github.com/quarkiverse)!
-
-A GitHub organization that provides repository hosting (including build, CI and release publishing setup) for Quarkus extensions contributed by the community.
-
----
-
-### Why use Quarkus for the Web?
-
-Its advanced and versatile stack makes it the best choice for your Web projects!
-
-➕ the Dev-Joy!
-
---
 
 ![](deck-assets/qr-code.png)<!-- .element width="60%"  -->
 
@@ -75,4 +60,24 @@ Its advanced and versatile stack makes it the best choice for your Web projects!
 
 ---
 
-TBC
+# A chance to win?!
+
+---
+
+### 3 codes for Quarkus in Action book!
+ 
+![](deck-assets/quarkus-in-action.png)<!-- .element width="40%"  -->
+
+---
+
+### Rocking dukes for your laptops!
+
+![](deck-assets/dukes.png)<!-- .element width="80%"  -->
+
+---
+
+### One game isn't fair...
+
+- Let's add a database
+- Average the results through multiple games
+
