@@ -9,9 +9,16 @@ It is dedicated to explaining how Quarkus simplifies the process of creating suc
 - [Renarde](https://quarkiverse.github.io/quarkiverse-docs/quarkus-renarde/dev/index.html)
 - [Playwright](https://docs.quarkiverse.io/quarkus-playwright/dev/) for testing.
 
+## Slides
+
+Use [quarkus-reveal](https://github.com/ia3andy/quarkus-reveal) to run the slide-deck (located in [deck.md](./deck.md):
+```shell
+quarkus-reveal
+```
+
 ## Dev Mode
 
-One tab:
+One tab:    
 ```shell
 cd dashboard;
 quarkus dev

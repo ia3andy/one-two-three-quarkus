@@ -20,7 +20,7 @@ theme: quarkus
 ## Andy Damevin
 
 - Principal Software engineer, Red Hat
-- Quarkus team
+- Quarkus team for 5 years
 - Lead of Quarkus's web initiatives
 - `@ia3andy`
 
@@ -34,7 +34,7 @@ theme: quarkus
 
 --
 
-### What Quarkus can offer?
+### What can Quarkus offer?
 
 - Lower memory usage and faster startups
 - Easy containerization and cloud deployments
@@ -43,7 +43,7 @@ theme: quarkus
 
 ---
 
-### What we can create with Quarkus?
+### What can we create with Quarkus?
 
 - Cloud-Native, Serverless, Micro-Services, Lambdas, Command-Lines…
 - And Web Applications!
