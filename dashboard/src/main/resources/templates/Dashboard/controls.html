@@ -42,12 +42,12 @@
         <i class="bi bi-recycle"></i>
         RESET
       </button>
-      {#if !cdi:scoreService.hasScore}
-        <a class="btn btn-leaderboard mt-4"
+      {#if cdi:scoreService.hasScore}
+        <a class="btn btn-leaderboard mt-2"
           hx-get="{uri:Dashboard.leaderboard}"
           hx-target="#main"
           hx-push-url="{uri:Dashboard.leaderboard}"
-        >Leaderboard</a>
+        ><i class="bi bi-trophy me-2"></i>Leaderboard</a>
       {/if}
   {/when}
 </div>
