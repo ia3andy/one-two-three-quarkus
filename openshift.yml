@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
+  name: postgresql
 spec:
-  serviceName: postgres
+  serviceName: postgresql
   selector:
     matchLabels:
-      app: postgres
+      app: postgresql
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgresql
     spec:
       containers:
-        - name: postgres
+        - name: postgresql
           image: postgres:14
           resources:
             limits:
@@ -38,10 +38,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: postgresql
 spec:
   selector:
-    app: postgres
+    app: postgresql
   type: LoadBalancer
   ports:
     - port: 5432
