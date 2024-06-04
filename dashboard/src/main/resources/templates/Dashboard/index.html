@@ -1,5 +1,6 @@
 {#include main.html}
-{#fragment id=game}
+
+{#fragment id=main}
   <div id="game-container">
       <div class="board-container d-flex justify-content-center align-items-center" hx-ext="sse" sse-connect="{uri:Dashboard.boardEvents}" sse-swap="BoardUpdate" hx-swap="morph:innerHTML">{#include Dashboard/board /}</div>
       <div class="controls-container d-flex justify-content-center align-items-center flex-column"  hx-ext="sse" sse-connect="{uri:Dashboard.controlsEvents}" sse-swap="ControlsUpdate" hx-swap="morph:innerHTML">{#include Dashboard/controls /}</div>

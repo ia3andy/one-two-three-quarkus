@@ -2,6 +2,7 @@ package service;
 
 import entity.Score;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
 import java.util.Comparator;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
+@Named("scoreService")
 public class ScoreService {
 
 

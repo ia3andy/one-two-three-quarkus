@@ -18,6 +18,7 @@ import model.GameEvent;
 import model.GameEvent.GameEventType;
 import org.jboss.resteasy.reactive.RestStreamElementType;
 import service.GameService;
+import service.ScoreService;
 
 import java.time.Duration;
 import java.util.List;
@@ -33,12 +34,15 @@ public class Dashboard extends HxController {
 
     @Inject GameService gameService;
 
+    @Inject
+    ScoreService scoreService;
+
     @CheckedTemplate
     public static class Templates {
 
         public static native TemplateInstance index();
 
-        public static native TemplateInstance index$game();
+        public static native TemplateInstance index$main();
 
         public static native TemplateInstance board();
 
@@ -48,7 +52,7 @@ public class Dashboard extends HxController {
     @Path("/")
     public TemplateInstance index() {
         if (isHxRequest()) {
-            return Templates.index$game();
+            return Templates.index$main();
         }
         return Templates.index();
     }
