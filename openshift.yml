@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14
+          resources:
+            limits:
+              memory: 150Mi
+          volumeMounts:
+            - mountPath: /data
+              name: data
+          env:
+            - name: POSTGRES_DB
+              value: quarkus
+            - name: POSTGRES_USER
+              value: quarkus
+            - name: POSTGRES_PASSWORD
+              value: quarkus
+            - name: PGDATA
+              value: /data/pgdata
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  type: LoadBalancer
+  ports:
+    - port: 5432
+      targetPort: 5432
+
