@@ -1,6 +1,8 @@
 package service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.NamesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +33,10 @@ class GameServiceTest {
         final List<GameService.Runner> sorted = runners.stream().sorted(GameService.rankComparator()).map(
                 GameService.RunnerState::runner).toList();
         assertEquals(List.of(runner4, runner5, runner7, runner2, runner1, runner8, runner3, runner6), sorted);
+    }
+
+    @Test
+    public void testName() {
+        Assertions.assertEquals(NamesUtil.getNameById(1), "Zipp");
     }
 }

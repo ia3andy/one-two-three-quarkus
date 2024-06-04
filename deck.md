@@ -51,6 +51,10 @@ theme: quarkus
 
 ---
 
+![](deck-assets/one-two-three.png)<!-- .element width="80%"  -->
+
+---
+
 ![](deck-assets/qr-code.png)<!-- .element width="60%"  -->
 
 [red.ht/one-two-three-quarkus](red.ht/one-two-three-quarkus)
@@ -68,17 +72,7 @@ theme: quarkus
 ### One game isn't fair...
 
 - Let's add a database
-- Average the results through multiple games
-
----
-
-```java
-System.out.println("""
-    ```java
-      System.out.println("How about coding now? 🤓");
-    ```
-""");
-```
+- Points through multiple games
 
 ---
 
@@ -95,6 +89,16 @@ System.out.println("""
 ### Rocking dukes for your laptops!
 
 ![](deck-assets/dukes.png)<!-- .element width="80%"  -->
+
+---
+
+```java
+System.out.println("""
+    ```java
+      System.out.println("How about coding now? 🤓");
+    ```
+""");
+```
 
 ---
 
