@@ -20,9 +20,9 @@ public class ScoreResource {
     }
 
     @GET
-    @Path("/average")
-    public List<ScoreService.ScoreAverage> average() {
-        return scoreService.calculateScoreAverages();
+    @Path("/points")
+    public List<ScoreService.ScorePoints> points() {
+        return scoreService.calculatePoints();
     }
 
 

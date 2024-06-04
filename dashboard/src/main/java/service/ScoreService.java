@@ -1,14 +1,12 @@
 package service;
 
 import entity.Score;
-import io.smallrye.common.annotation.Blocking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -21,14 +19,18 @@ public class ScoreService {
             return;
         }
         for (int i = 0; i < rank.size(); i++) {
-            createScore(rank.get(i).name(), i + 1).persist();
+            createScore(rank.get(i).name(), calculatePoints(i + 1, rank.size())).persist();
         }
     }
 
-    private Score createScore(String name, int position) {
+    private int calculatePoints(int position, int playersSize) {
+        return (playersSize - position) * 10;
+    }
+
+    private Score createScore(String name, int points) {
         Score score = new Score();
         score.name = name;
-        score.position = position;
+        score.points = points;
         return score;
     }
 
@@ -36,14 +38,12 @@ public class ScoreService {
         return Score.count() > 0;
     }
 
-
-
-    public List<ScoreAverage> calculateScoreAverages() {
-        return Score.<Score>streamAll().collect(Collectors.groupingBy(score -> score.name, Collectors.averagingDouble(score -> score.position)))
-            .entrySet().stream().sorted(Comparator.comparingDouble(Map.Entry::getValue))
-            .map(e -> new ScoreAverage(e.getKey(), e.getValue()))
+    public List<ScorePoints> calculatePoints() {
+        return Score.<Score>streamAll().collect(Collectors.groupingBy(score -> score.name, Collectors.summingInt(score -> score.points)))
+            .entrySet().stream().map(e -> new ScorePoints(e.getKey(), e.getValue()))
+            .sorted(Comparator.comparingInt(ScorePoints::points).reversed())
             .toList();
     }
 
-    public record ScoreAverage(String name, double average) {}
+    public record ScorePoints(String name, int points) {}
 }

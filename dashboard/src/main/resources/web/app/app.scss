@@ -39,8 +39,9 @@ html, body {
 
   .row {
     font-size: 2rem;
+    border-left: 10px solid transparent;
 
-    &.rank:nth-child(-n+3) {
+    &.rank:nth-child(-n+4) {
       border-left: 10px solid orange;
     }
 

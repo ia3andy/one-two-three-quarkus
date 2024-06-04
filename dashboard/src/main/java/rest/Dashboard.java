@@ -45,8 +45,8 @@ public class Dashboard extends HxController {
 
         public static native TemplateInstance controls();
 
-        public static native TemplateInstance leaderboard(List<ScoreService.ScoreAverage> averageScores);
-        public static native TemplateInstance leaderboard$main(List<ScoreService.ScoreAverage> averageScores);
+        public static native TemplateInstance leaderboard(List<ScoreService.ScorePoints> scorePoints);
+        public static native TemplateInstance leaderboard$main(List<ScoreService.ScorePoints> scorePoints);
 
     }
 
@@ -60,9 +60,9 @@ public class Dashboard extends HxController {
 
     public TemplateInstance leaderboard() {
         if(isHxRequest()) {
-            return Templates.leaderboard$main(scoreService.calculateScoreAverages());
+            return Templates.leaderboard$main(scoreService.calculatePoints());
         }
-        return Templates.leaderboard(scoreService.calculateScoreAverages());
+        return Templates.leaderboard(scoreService.calculatePoints());
     }
 
     public TemplateInstance controls() {

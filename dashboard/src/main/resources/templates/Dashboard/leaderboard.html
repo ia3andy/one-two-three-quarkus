@@ -3,18 +3,18 @@
   <div class="leaderboard-container">
     <h1><i class="bi bi-trophy"></i> Leaderboard</h1>
     <a class="btn" hx-get="{uri:Dashboard.index}" hx-push-url="{uri:Dashboard.index}" hx-target="#main"><i class="bi bi-chevron-left me-2"></i>Back to the game</a>
-    <p><i>Averages shown for {averageScores.size} players.</i></p>
+    <p><i>Points for {scorePoints.size} players.</i></p>
     <div>
       <div class="row title">
         <div class="col-md-1">Rank</div>
         <div class="col-md-10">Name</div>
-        <div class="col-md-1">Average</div>
+        <div class="col-md-1">Points</div>
       </div>
-      {#for score in averageScores}
+      {#for score in scorePoints}
         <div class="row rank">
           <div class="col-md-1">{score_count}</div>
           <div class="col-md-10">{score.name}</div>
-          <div class="col-md-1">{score.average.round}</div>
+          <div class="col-md-1">{score.points}</div>
         </div>
       {/for}
     </div>

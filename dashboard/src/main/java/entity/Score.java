@@ -7,5 +7,5 @@ import jakarta.persistence.Entity;
 public class Score extends PanacheEntity {
 
     public String name;
-    public int position;
+    public int points;
 }
