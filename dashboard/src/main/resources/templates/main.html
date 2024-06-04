@@ -6,8 +6,10 @@
     <link rel="icon" href="/static/images/favicon.svg" type="image/svg+xml">
     {#bundle /}
   </head>
-  <body>
+  <body hx-headers='{"{inject:csrf.headerName}":"{inject:csrf.token}"}' hx-ext="morph">
     <!-- This inserts the body of your templates -->
+    <div id="main" class="container">
     {#insert /}
+    </div>
   </body>
 </html>
