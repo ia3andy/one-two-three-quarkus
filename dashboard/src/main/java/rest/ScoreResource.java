@@ -24,8 +24,4 @@ public class ScoreResource {
     public List<ScoreService.ScoreAverage> average() {
         return scoreService.calculateScoreAverages();
     }
-
-
-
-
 }

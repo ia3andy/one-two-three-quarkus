@@ -12,13 +12,11 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ScoreService {
 
-
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void persistRank(List<GameService.Runner> rank) {
         if (rank == null || rank.isEmpty()) {
             return;
         }
-
         for (int i = 0; i < rank.size(); i++) {
             createScore(rank.get(i).name(), i + 1).persist();
         }
@@ -30,6 +28,7 @@ public class ScoreService {
         score.position = position;
         return score;
     }
+
 
     public List<ScoreAverage> calculateScoreAverages() {
         return Score.<Score>streamAll().collect(Collectors.groupingBy(score -> score.name, Collectors.averagingDouble(score -> score.position)))
