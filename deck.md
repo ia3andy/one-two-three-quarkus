@@ -105,3 +105,7 @@ System.out.println("""
 ![](deck-assets/qr-code.png)<!-- .element width="60%"  -->
 
 [red.ht/one-two-three-quarkus](red.ht/one-two-three-quarkus)
+
+---
+
+![](deck-assets/conclusion.png)<!-- .element width="100%"  -->

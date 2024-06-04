@@ -96,16 +96,6 @@ public class Dashboard extends HxController {
         return html.replaceAll("(\\s+|\\v)", " ");
     }
 
-    private String resolveEventData(String eventName) {
-       switch (eventName) {
-              case "BoardUpdate":
-                return Templates.board().render();
-              case "ControlsUpdate":
-                return Templates.controls().render();
-              default:
-                return Templates.index$game().render();
-       }
-    }
 
     private static String resolveSseEventName(List<GameEvent> g) {
         final Set<String> events = g.stream().map(GameEvent::type).map(GameEventType::sseEventName).filter(Objects::nonNull).collect(Collectors.toSet());
