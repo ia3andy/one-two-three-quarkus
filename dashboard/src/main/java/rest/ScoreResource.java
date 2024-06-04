@@ -2,6 +2,7 @@ package rest;
 
 import entity.Score;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import service.ScoreService;
@@ -25,5 +26,11 @@ public class ScoreResource {
         return scoreService.calculatePoints();
     }
 
+    @GET
+    @Path("/delete")
+    @Transactional
+    public void delete() {
+        Score.deleteAll();
+    }
 
 }
