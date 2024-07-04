@@ -1,19 +1,12 @@
 ---
 theme: quarkus
+width: 1920
+height: 1080
 ---
 ![Quarkus](deck-assets/hero_worldtour.png)
 
-## A day in the life of a `Quarkus full-stack developer`
-
----
-
-## Martin Stefanko
-
-- Principal Software engineer, Red Hat
-- BrnoJUG leader
-- MicroProfile committer
-- Author of Quarkus in Action
-- `@xstefank`
+## A day in the life of a
+`Quarkus full-stack developer`
 
 ---
 
@@ -51,21 +44,21 @@ theme: quarkus
 
 ---
 
-![](deck-assets/one-two-three.png)<!-- .element width="80%"  -->
+![](deck-assets/one-two-three.png)<!-- .element height="100%"  -->
 
 ---
 
-![](deck-assets/qr-code.png)<!-- .element width="60%"  -->
+![](deck-assets/qr-code.png)<!-- .element height="100%"  -->
 
 [red.ht/one-two-three-quarkus](red.ht/one-two-three-quarkus)
 
 ---
 
-![](deck-assets/one-two-three-quarkus.png)<!-- .element width="100%"  -->
+![](deck-assets/one-two-three-quarkus.png)<!-- .element height="100%"  -->
 
 ---
 
-![](deck-assets/web-bundler.png)<!-- .element width="100%"  -->
+![](deck-assets/web-bundler.png)<!-- .element height="100%"  -->
 
 ---
 
@@ -76,19 +69,9 @@ theme: quarkus
 
 ---
 
-# A chance to win?!
-
----
-
-### 3 codes for Quarkus in Action book!
- 
-![](deck-assets/quarkus-in-action.png)<!-- .element width="40%"  -->
-
----
-
 ### Rocking dukes for your laptops!
 
-![](deck-assets/dukes.png)<!-- .element width="80%"  -->
+![](deck-assets/dukes.png)<!-- .element height="100%"  -->
 
 ---
 

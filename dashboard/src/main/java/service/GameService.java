@@ -1,5 +1,6 @@
 package service;
 
+import entity.Score;
 import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.subscription.MultiEmitter;
@@ -7,6 +8,7 @@ import io.smallrye.mutiny.unchecked.Unchecked;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.inject.Singleton;
+import jakarta.transaction.Transactional;
 import model.GameEvent;
 import model.GameEvent.GameEventType;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -78,9 +80,6 @@ public class GameService {
     @ConfigProperty(name = "game.max-duration", defaultValue = "90")
     public int maxDuration;
 
-    @Inject
-    ScoreService scoreService;
-
     public void start() {
         rank.set(null);
         noBodyMoveStart.set(null);
@@ -100,15 +99,16 @@ public class GameService {
                     if (isGameOver()) {
                         var prev = rank.getAndUpdate(l -> {
                             if (l == null) {
-                                rockingStatus.set(RockingStatus.GAME_OVER);
-                                List<Runner> computedRank = computeRank();
-                                Log.infof("Game Over: " + computedRank);
-                                return computedRank;
+                                return computeRank();
                             }
                             return l;
                         });
                         if (prev == null) {
-                            scoreService.persistRank(rank());
+                            final List<Runner> newRank = rank();
+                            Log.infof("Game Over: " + newRank);
+                            persistRank(newRank);
+                            rockingStatus.set(RockingStatus.GAME_OVER);
+                            emitEvent(GAME_OVER);
                         }
                         if (prev == null || t > next.get()) {
                             emitRank();
@@ -145,6 +145,17 @@ public class GameService {
         }
         for (int i = 0; i < rank.size(); i++) {
             emitEvent(GameEventType.GAME_OVER, rank.get(i).id, Map.of("rank", String.valueOf(i + 1)));
+        }
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void persistRank(List<GameService.Runner> rank) {
+        if (rank == null || rank.isEmpty()) { return;}
+
+        for (int i = 0; i < rank.size(); i++) {
+            var r = i + 1;
+            Score score = new Score(gameId.get(), rank.get(i).name(), (rank.size() - r) * 10);
+            score.persist();
         }
     }
 

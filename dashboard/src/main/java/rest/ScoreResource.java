@@ -1,10 +1,8 @@
 package rest;
 
 import entity.Score;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import service.ScoreService;
 
 import java.util.List;
 
@@ -16,13 +14,10 @@ public class ScoreResource {
         return Score.listAll();
     }
 
-   @Inject
-   ScoreService scoreService;
-
    @GET
-   @Path("/points")
-   public List<ScoreService.ScorePoints> points() {
-       return scoreService.calculatePoints();
+   @Path("/total")
+   public List<Score.Total> total() {
+       return Score.total();
    }
 
 
