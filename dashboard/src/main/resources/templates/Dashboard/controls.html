@@ -1,46 +1,60 @@
-<div id="controls" class="controls {cdi:game.watchStatus.toString.toLowerCase} d-flex justify-content-center align-items-center flex-grow-1 flex-column">
+<div id="controls"
+     class="controls {cdi:game.watchStatus.toString.toLowerCase} d-flex justify-content-center align-items-center flex-grow-1 flex-column">
   {#when cdi:game.watchStatus}
-    {#is NOBODY_MOVE}
-      <h2 class="one-two-three">One-Two-Three</h2>
-      <button class="btn btn-link"
+  {#is NOBODY_MOVE}
+  <h2 class="one-two-three">One-Two-Three</h2>
+  <button class="btn btn-link"
           _="on load audio.game.pause()"
-          hx-post="{uri:Dashboard.timeoutGame}">
-        <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
-      </button>
-      <h2 class="venue">{config:venue}</h2>
-    {#is WARNING}
-      <button class="btn btn-link blink"
-        hx-post="{uri:Dashboard.timeoutGame}">
-        <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
-      </button>
-    {#is ROCKING}
-      <button class="btn btn-link dance"
+          hx-post="{uri:Dashboard.timeoutGame()}">
+    <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
+  </button>
+  <h2 class="venue">{config:venue}</h2>
+  {#is WARNING}
+  <button class="btn btn-link blink"
+          hx-post="{uri:Dashboard.timeoutGame()}">
+    <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
+  </button>
+  {#is ROCKING}
+  <button class="btn btn-link dance"
           _="on load audio.game.play()"
-          hx-post="{uri:Dashboard.timeoutGame}">
-        <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
-      </button>
-    {#is GAME_OVER}
-      <button class="btn btn-link"
-        _="on load audio.game.stop()"
-        hx-post="{uri:Dashboard.stopGame}">
-        <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
-      </button>
-      <h2 class="venue">{config:venue}</h2>
-      <h2 class="one-two-three">You are Awesome!</h2>
-      <button class="btn" hx-post="{uri:Dashboard.stopGame}">
-        <i class="bi bi-sign-stop"></i>
-        STOP
-      </button>
-    {#else}
-      <div role="button" class="d-flex justify-content-center align-items-center flex-grow-1 flex-column"
-        hx-post="{uri:Dashboard.startGame}"
-        _="on load audio.game.stop()">
-        <i class="bi bi-music-player"></i>
-        <h2>Click to start rocking!</h2>
-      </div>
-      <button class="btn reset" hx-post="{uri:Dashboard.reset}" hx-confirm="Are you sure?">
-        <i class="bi bi-recycle"></i>
-        RESET
-      </button>
+          hx-post="{uri:Dashboard.timeoutGame()}">
+    <img id="rocking-duke" class="rocking-duke" src="{duke:get(cdi:game.rockingDuke)}" alt="Rocking Duke">
+  </button>
+  {#is GAME_OVER}
+  <button class="btn btn-link"
+          _="on load audio.game.stop()"
+          hx-post="{uri:Dashboard.stopGame()}">
+    <img src="/static/images/quarkus_worldtour.png" alt="Quarkus">
+  </button>
+  <h2 class="venue">{config:venue}</h2>
+  <h2 class="one-two-three">You are Awesome!</h2>
+  <button class="btn" hx-post="{uri:Dashboard.stopGame()}">
+    <i class="bi bi-sign-stop"></i>
+    STOP
+  </button>
+  {#else}
+  <div role="button" class="start-game d-flex justify-content-center align-items-center flex-grow-1 flex-column"
+       hx-post="{uri:Dashboard.startGame()}"
+       _="on load audio.game.stop()">
+    <i class="bi bi-music-player"></i>
+    <h2>Click to start rocking!</h2>
+  </div>
+  <div class="dropdown">
+    <button class="btn toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-bs-auto-close="true"
+            aria-haspopup="true" aria-expanded="false">
+      <i class="bi bi-gear-wide-connected"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="{uri:Dashboard.leaderboard}" hx-get="{uri:Dashboard.leaderboard}"
+         hx-push-url="{uri:Dashboard.leaderboard}" hx-target="#main">
+        <i class="bi bi-trophy me-4"></i>Leaderboard
+      </a>
+      <a class="dropdown-item reset" href="{uri:Dashboard.reset()}" hx-post="{uri:Dashboard.reset()}"
+         hx-confirm="Are you sure?">
+        <i class="bi bi-recycle me-4"></i>Reset Game
+      </a>
+    </div>
+  </div>
+
   {/when}
 </div>

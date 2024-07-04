@@ -1,10 +1,10 @@
 package rest;
 
+import entity.Score;
 import io.quarkiverse.renarde.htmx.HxController;
 import io.quarkus.logging.Log;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
-import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Multi;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.POST;
@@ -38,19 +38,31 @@ public class Dashboard extends HxController {
 
         public static native TemplateInstance index();
 
-        public static native TemplateInstance index$game();
+        public static native TemplateInstance index$main();
 
         public static native TemplateInstance board();
 
         public static native TemplateInstance controls();
+
+        public static native TemplateInstance leaderboard(List<Score.Total> scorePoints);
+
+        public static native TemplateInstance leaderboard$main(List<Score.Total> scorePoints);
     }
 
     @Path("/")
     public TemplateInstance index() {
         if (isHxRequest()) {
-            return Templates.index$game();
+            return Templates.index$main();
         }
         return Templates.index();
+    }
+
+
+    public TemplateInstance leaderboard() {
+        if(isHxRequest()) {
+            return Templates.leaderboard$main(Score.total());
+        }
+        return Templates.leaderboard(Score.total());
     }
 
     public TemplateInstance controls() {
@@ -96,16 +108,6 @@ public class Dashboard extends HxController {
         return html.replaceAll("(\\s+|\\v)", " ");
     }
 
-    private String resolveEventData(String eventName) {
-       switch (eventName) {
-              case "BoardUpdate":
-                return Templates.board().render();
-              case "ControlsUpdate":
-                return Templates.controls().render();
-              default:
-                return Templates.index$game().render();
-       }
-    }
 
     private static String resolveSseEventName(List<GameEvent> g) {
         final Set<String> events = g.stream().map(GameEvent::type).map(GameEventType::sseEventName).filter(Objects::nonNull).collect(Collectors.toSet());

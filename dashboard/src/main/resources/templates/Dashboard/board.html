@@ -1,4 +1,4 @@
-{#let activeRunners = cdi:game.activeRunners}
+{#let activeRunners=cdi:game.activeRunners}
 {#for item in activeRunners}
   {#if item.active}
     <div id="{item.runner.id}" class="runner {item.status} {cdi:game.boxSize(activeRunners.size())}" style="left:calc({cdi:game.indexPercentage(item_index, activeRunners.size())}% - 15px); bottom: calc({item.distancePercentage(cdi:game.targetDistance)}%); ">

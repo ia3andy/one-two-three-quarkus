@@ -10,111 +10,138 @@
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
-
   <artifactId>one-two-three-quarkus-dashboard-locker</artifactId>
-
   <packaging>pom</packaging>
+
+  <!-- Locked dependencies (Update with 'mvn io.mvnpm:locker-maven-plugin:LATEST:lock -Dunlocked') -->
+
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>gen-mapping</artifactId>
-        <version>0.3.3</version>
+        <version>0.3.5</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>resolve-uri</artifactId>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>set-array</artifactId>
-        <version>1.1.2</version>
+        <version>1.2.1</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>source-map</artifactId>
-        <version>0.3.5</version>
+        <version>0.3.6</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>sourcemap-codec</artifactId>
         <version>1.4.15</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.jridgewell</groupId>
         <artifactId>trace-mapping</artifactId>
-        <version>0.3.20</version>
+        <version>0.3.25</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm.at.popperjs</groupId>
         <artifactId>core</artifactId>
         <version>2.11.8</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>acorn</artifactId>
-        <version>8.11.2</version>
+        <version>8.12.1</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>bootstrap-icons</artifactId>
         <version>1.11.1</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>bootstrap</artifactId>
         <version>5.2.3</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>buffer-from</artifactId>
         <version>1.1.2</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>commander</artifactId>
         <version>2.20.3</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>howler</artifactId>
         <version>2.2.3</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mvnpm</groupId>
+        <artifactId>htmx-ext-sse</artifactId>
+        <version>2.2.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>htmx.org</artifactId>
-        <version>1.9.9</version>
+        <version>2.0.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>hyperscript.org</artifactId>
         <version>0.9.8</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>idiomorph</artifactId>
-        <version>0.0.9</version>
+        <version>0.3.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>markdown-it-deflist</artifactId>
         <version>2.1.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>source-map-support</artifactId>
         <version>0.5.21</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>source-map</artifactId>
         <version>0.6.1</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.mvnpm</groupId>
         <artifactId>terser</artifactId>
-        <version>5.26.0</version>
+        <version>5.31.1</version>
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -1,19 +1,11 @@
 .controls-container {
   position: absolute;
   opacity: 90%;
-  top: calc(50% - 300px);
+  top: calc(50% - 200px);
   left: calc(50% - 150px);
   width: 300px;
-  height: 600px;
+  height: 400px;
 
-  .btn {
-    color: white;
-    font-size: 20px;
-
-    &:hover {
-      color: orange;
-    }
-  }
 }
 
 .controls {
@@ -24,6 +16,10 @@
     border-radius: 5px;
     color: white;
     text-align: center;
+
+    &:hover {
+      color: yellow;
+    }
 
     &.venue {
       font-size: 40px;
@@ -37,7 +33,7 @@
     }
   }
 
-  &.off div i {
+  &.off .start-game i {
     font-size: 250px;
     line-height: 250px;
     color: #DA3753;
@@ -55,11 +51,28 @@
     animation: blink 1s infinite linear, dance 1s infinite ease-in-out;
   }
 
-  .btn.reset {
-    color: orange;
 
-    &:hover {
-      color: red;
+
+  .dropdown .toggle {
+    border: none;
+
+    &.show {
+      color: yellow;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: transparent;
+    border: 1px dashed white;
+
+    a.dropdown-item {
+      color: white;
+      font-size: 20px;
+      background-color: transparent;
+
+      &:hover {
+        color: yellow;
+      }
     }
   }
 

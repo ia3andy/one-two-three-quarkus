@@ -10,4 +10,64 @@ html, body {
   font-family: SyneMono, monospace;
   height: -webkit-fill-available;
   background-color: #0D1C2C;
+  color: white;
 }
+
+.btn {
+  color: white;
+  font-size: 20px;
+  text-align: left;
+  &:hover {
+    color: orange;
+  }
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    font-size: 5rem;
+    margin: 50px 0;
+  }
+
+  .row {
+    font-size: 2rem;
+  }
+}
+
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  h1 {
+    text-align: center;
+    font-size: 5rem;
+    margin: 50px 0;
+  }
+
+  p {
+    font-size: 1rem;
+    color: lightgray;
+  }
+
+  .row {
+    font-size: 2rem;
+    border-left: 10px solid transparent;
+
+    &.rank:nth-child(-n+4) {
+      border-left: 10px solid orange;
+    }
+
+    &.title {
+      font-weight: bold;
+      color: yellow;
+    }
+  }
+
+}
+
+
